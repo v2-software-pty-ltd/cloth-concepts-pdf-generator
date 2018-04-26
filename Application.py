@@ -12,7 +12,7 @@ def hello_world():
     return 'Hello World'
 
 
-@app.route('/sales_confirmation')
+@app.route('/sales-confirmation')
 def sales_confirmation():
     sales_order_id = request.args.get('sales_order_id')
     if sales_order_id is None:
@@ -88,5 +88,5 @@ def sales_confirmation():
         "lab_dip": lab_dip
     }
 
-    html = render_template('./templates/sales_confirmation.html', title='Sales Order Confirmation', data=data)
+    html = render_template('./sales_confirmation.html', title='Sales Order Confirmation', data=data)
     return render_pdf(HTML(string=html))
