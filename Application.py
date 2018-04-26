@@ -7,11 +7,6 @@ import requests
 app = Flask(__name__)
 
 
-@app.route('/hello-world')
-def hello_world():
-    return 'Hello World'
-
-
 @app.route('/sales-confirmation')
 def sales_confirmation():
     sales_order_id = request.args.get('sales_order_id')
