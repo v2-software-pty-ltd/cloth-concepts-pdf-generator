@@ -1,0 +1,309 @@
+<html>
+
+<head>
+  <title>{{ title }}</title>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <style>
+    #wrapper {
+      padding: 25px;
+      background: #f7f7f7;
+    }
+
+    .float-right {
+      float: right;
+    }
+
+    .text-align-center {
+      text-align: center;
+    }
+
+    .all-caps {
+      text-transform: uppercase;
+    }
+
+    .inline-block {
+      display: inline-block;
+    }
+
+    .wrapper table {
+      width: 100%;
+    }
+
+    .wrapper th {
+      text-align: left;
+      padding: 5px;
+    }
+
+    .wrapper td {
+      vertical-align: top;
+      padding: 5px;
+    }
+
+    .table-with-border td,
+    .table-with-border th {
+      border: 1px solid black;
+    }
+
+    .info-heading h1.text-align-center.all-caps {
+      background: #242424;
+      padding: 15px;
+      color: #fff;
+      font-size: 34px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    td {
+      background: #e7e9ef;
+      padding: 12px;
+      font-family: 'Montserrat', sans-serif;
+      border: 0px solid black;
+      text-align: center;
+    }
+
+    th {
+      background: #000;
+      color: #fff;
+      padding: 15px;
+      font-family: 'Montserrat', sans-serif;
+      border: 0px solid black;
+    }
+
+    .inline-block.float-right span {
+      font-family: 'Montserrat', sans-serif;
+      line-height: 30px;
+    }
+
+    p {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    div#terms {
+      background: #e7e9ef;
+      padding: 30px;
+    }
+
+    table.table-with-border td {
+      line-height: 34px;
+    }
+
+    table.table-with-border tfoot td {
+      background-color: white;
+    }
+
+    #header {
+      padding-bottom: 40px;
+    }
+
+    .inline-block.float-right {
+      position: relative;
+    }
+
+    span.address1:before {
+      content: "\f041";
+      font-family: FontAwesome;
+      position: absolute;
+      left: -20px;
+    }
+
+    span.address2:before {
+      content: "\f14e";
+      font-family: FontAwesome;
+      position: absolute;
+      left: -20px;
+    }
+
+    span.phone:before {
+      content: "\f095";
+      font-family: FontAwesome;
+      position: absolute;
+      left: -20px;
+    }
+
+    span.fax:before {
+      content: "\f1ac";
+      font-family: FontAwesome;
+      position: absolute;
+      left: -20px;
+    }
+
+    span.abn:before {
+      content: "\f05d";
+      font-family: FontAwesome;
+      position: absolute;
+      left: -20px;
+    }
+  </style>
+  <main id="wrapper">
+    <section id="header">
+      <div class="inline-block">
+        <img style="height: 100px; width: auto;" src="https://static.wixstatic.com/media/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png/v1/crop/x_91,y_87,w_1409,h_515/fill/w_618,h_226,al_c,usm_0.66_1.00_0.01/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png"
+        />
+      </div>
+      <div class="inline-block float-right">
+        <span class="address1">UNIT 4/538 Gardeners Road, Alexandria 2015</span>
+        </br>
+        <span class="address2">NSW Australia</span>
+        </br>
+        <span class="phone">Phone: +61 2 9669 4615</span>
+        </br>
+        <span class="fax">Fax: +61 2 9700 7267</span>
+        </br>
+        <span class="abn">ABN: 99136665462</span>
+      </div>
+    </section>
+    <section id="confirmation-details">
+      <div class="info-heading">
+        <h1 class="text-align-center all-caps">
+          Sales Confirmation
+        </h1>
+      </div>
+      <br/>
+      <div class="customer-table">
+        <table style="width: 100%;">
+          <tr>
+            <td style="width: 260px;">
+              <h1>Customer:</h1>
+            </td>
+            <td style="width: 410px;">
+              {{data["client_name"]}}
+            </td>
+            <td>Date:</td>
+            <td>
+              {{data["sales_order_details"]["Date"]}}
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              {{data["client_contact_name"]}}
+            </td>
+            <td>Customer Order #</td>
+            <td>TODO</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td>Sales Cfm #</td>
+            <td>SC
+              {{data["sales_order_details"]["Sales_Order_Number"]}}
+            </td>
+          </tr>
+        </table>
+      </div>
+      <br />
+      <br />
+      <table style="width: 100%;" class="table-with-border">
+        <thead>
+          <tr>
+            <th style="width: 260px;">Item #</th>
+            <th style="width: 300px;">Description</th>
+            <th style="width: 100px;">Colour</th>
+            <th style="width: 60px;">Quantity (m)</td>
+            <th style="width: 100px;">Unit Price (AUD / m)</td>
+            <th style="width: 60px;">Total (AUD)</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for line_item in data["sales_order_details"]["Line_Items"] %}
+            <tr>
+              <td>{{line_item["Product"]["Product_Name"]}}</td>
+              <td>
+                {{ (line_item["Product"]["Mill_Item_Number"] + "<br/>" if line_item["Product"]["Mill_Item_Number"] else "")|safe }}
+                {{ ("COMPOSITION: " + line_item["Product"]["Fabric_Composition"] + "<br/>" if line_item["Product"]["Fabric_Composition"] else "")|safe }}
+                {{ ("WIDTH: " + line_item["Product"]["Piece_Width"] + "<br/>" if line_item["Product"]["Piece_Width"] else "")|safe }}
+                {{ ("WEIGHT: " + line_item["Product"]["Weight"] + "<br/>" if line_item["Product"]["Weight"] else "")|safe }}
+                {{ (line_item["Product"]["Additional_Information"] if line_item["Product"]["Additional_Information"] else "")|safe }}
+              </td>
+              <td>{{line_item["Product"]["Colour"] or ''}}</td>
+              <td>{{line_item["Quantity_meters"] or '0'}}m</td>
+              <td>${{line_item["Cost_Per_Meter"] or '0.0'}}</td>
+              <td>${{line_item["Line_Item_Total"] or '0.0'}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6" style="text-align: left;">
+              <b>Special Instructions:</b><br/>
+              {{data["sales_order_details"]["Special_Instructions"] or ""}}
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" style="border: none; background: initial;"></td>
+            <td><b>Sub Total</b></td>
+            <td>${{data["sales_order_details"]["Grand_Total_ex_GST"]}}</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="border: none; background: initial;"></td>
+            <td><b>GST</b></td>
+            <td>${{data["sales_order_details"]["GST"]}}</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="border: none; background: initial;"></td>
+            <td><b>Total</b></td>
+            <td>${{data["sales_order_details"]["Grand_Total_inc_GST"]}}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <br/>
+      <br/>
+      <table class="table-with-border">
+        <thead>
+          <tr>
+            <th style="width: 40%;">
+              <b>Delivery Address and Shipping Method</b>
+            </th>
+            <th style="width: 35%;">
+              <b>Delivery Date</b>
+            </th>
+            <th style="width: 25%;">
+              <b>Payment Terms</b>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{ (data["bulk_shipment"]["Street_Address_Line_1"] + "<br/>" if data["bulk_shipment"]["Street_Address_Line_1"] else "")|safe }}
+              {{ (data["bulk_shipment"]["Street_Address_Line_2"] + "<br/>" if data["bulk_shipment"]["Street_Address_Line_2"] else "")|safe }}
+              {{ (data["bulk_shipment"]["City"] + "<br/>" if data["bulk_shipment"]["City"] else "")|safe }}
+              {{ (data["bulk_shipment"]["State"] + "<br/>" if data["bulk_shipment"]["State"] else "")|safe }}
+              {{ (data["bulk_shipment"]["Postcode"] + "<br/>" if data["bulk_shipment"]["Postcode"] else "")|safe }}
+              {{ (data["bulk_shipment"]["Delivery_Method"] + "<br/>" if data["bulk_shipment"]["Delivery_Method"] else "")|safe }}
+            </td>
+            <td>
+              <p>Strike Off:
+                {{data["strike_off"]["Received_Date"] if data["strike_off"] != None else "N/A"}}
+              </p>
+              <p>Lab Dip:
+                 {{data["lab_dip"]["Received_Date"] if data["lab_dip"] != None else "N/A"}}
+              </p>
+              <p>Shipping Sample:
+                {{data["shipping_sample_shipment_date"]}} (ex Mill)</p>
+              <p>Sampling:
+                {{data["sample_shipment_date"]}} (ex Mill)</p>
+              <p>Bulk:
+                {{data["bulk_shipment_date"]}} (ex Mill)</p>
+            </td>
+            <td>
+              <p>30 days on invoice</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br/>
+      <br/>
+      <div id="terms">
+        <p>1. The quantity and amount can be accepted by 10% more or less.</p>
+        <p>2. No responsibility or claim will be accepted after fabric has been cut.</p>
+        <p>3. Width and weight tolerence +/- 5%.</p>
+        <p>4. Claims, if any, must be made within 7 days of delivery.</p>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
