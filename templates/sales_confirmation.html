@@ -8,9 +8,26 @@
 
 <body>
   <style>
+    table {
+      page-break-inside: auto
+    }
+
+    tr {
+      page-break-inside: avoid;
+      page-break-after: auto
+    }
+
+    thead {
+      display: table-header-group
+    }
+
+    tfoot {
+      display: table-footer-group
+    }
+
     #wrapper {
-      padding: 25px;
       background: #f7f7f7;
+      -webkit-print-color-adjust: exact;
     }
 
     .float-right {
@@ -43,13 +60,33 @@
       padding: 5px;
     }
 
+    td {
+      font-size: 14px;
+    }
+
+    th {
+      font-size: 16px;
+      padding: 9px;
+    }
+
+    .table-total td {
+      background: #fff;
+      border: 1px solid #000;
+    }
+
+    .table-with-border1 th {
+      padding: 10px;
+    }
+
     .table-with-border td,
     .table-with-border th {
       border: 1px solid black;
+      -webkit-print-color-adjust: exact;
     }
 
     .info-heading h1.text-align-center.all-caps {
       background: #242424;
+      -webkit-print-color-adjust: exact;
       padding: 15px;
       color: #fff;
       font-size: 34px;
@@ -58,7 +95,8 @@
 
     td {
       background: #e7e9ef;
-      padding: 12px;
+      -webkit-print-color-adjust: exact;
+      padding: 11px;
       font-family: 'Montserrat', sans-serif;
       border: 0px solid black;
       text-align: center;
@@ -67,7 +105,8 @@
     th {
       background: #000;
       color: #fff;
-      padding: 15px;
+      -webkit-print-color-adjust: exact;
+      padding: 1px;
       font-family: 'Montserrat', sans-serif;
       border: 0px solid black;
     }
@@ -83,11 +122,12 @@
 
     div#terms {
       background: #e7e9ef;
+      -webkit-print-color-adjust: exact;
       padding: 30px;
     }
 
     table.table-with-border td {
-      line-height: 34px;
+      line-height: 20px;
     }
 
     table.table-with-border tfoot td {
@@ -136,6 +176,21 @@
       position: absolute;
       left: -20px;
     }
+
+    .table-total {
+      max-width: 400px;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+      float: right;
+    }
+
+    .table-with-border {
+      width: 100%;
+    }
+
+    .table-with-border1 td {
+      font-size: 10px;
+    }
   </style>
   <main id="wrapper">
     <section id="header">
@@ -165,7 +220,7 @@
       <div class="customer-table">
         <table style="width: 100%;">
           <tr>
-            <td style="width: 260px;">
+            <td style="width: 20px;">
               <h1>Customer:</h1>
             </td>
             <td style="width: 410px;">
@@ -187,65 +242,79 @@
           <tr>
             <td colspan="2"></td>
             <td>Sales Cfm #</td>
-            <td>SC
-              {{data["sales_order_details"]["Sales_Order_Number"]}}
+            <td>SC {{data["sales_order_details"]["Sales_Order_Number"]}}
             </td>
           </tr>
         </table>
       </div>
       <br />
       <br />
-      <table style="width: 100%;" class="table-with-border">
+      <table style="width: 100%;" class="table-with-border table-with-border1">
         <thead>
           <tr>
-            <th style="width: 260px;">Item #</th>
-            <th style="width: 300px;">Description</th>
-            <th style="width: 100px;">Colour</th>
-            <th style="width: 60px;">Quantity (m)</td>
-            <th style="width: 100px;">Unit Price (AUD / m)</td>
-            <th style="width: 60px;">Total (AUD)</td>
+            <th>Item #</th>
+            <th>Description</th>
+            <th>Colour</th>
+            <th>Quantity
+              <br>(m)</td>
+              <th>Unit Price
+                <br>AUD / m)</td>
+                <th>Total
+                  <br>(AUD)</td>
           </tr>
         </thead>
         <tbody>
           {% for line_item in data["sales_order_details"]["Line_Items"] %}
-            <tr>
-              <td>{{line_item["Product"]["Product_Name"]}}</td>
-              <td>
-                {{ (line_item["Product"]["Mill_Item_Number"] + "<br/>" if line_item["Product"]["Mill_Item_Number"] else "")|safe }}
-                {{ ("COMPOSITION: " + line_item["Product"]["Fabric_Composition"] + "<br/>" if line_item["Product"]["Fabric_Composition"] else "")|safe }}
-                {{ ("WIDTH: " + line_item["Product"]["Piece_Width"] + "<br/>" if line_item["Product"]["Piece_Width"] else "")|safe }}
-                {{ ("WEIGHT: " + line_item["Product"]["Weight"] + "<br/>" if line_item["Product"]["Weight"] else "")|safe }}
-                {{ (line_item["Product"]["Additional_Information"] if line_item["Product"]["Additional_Information"] else "")|safe }}
-              </td>
-              <td>{{line_item["Product"]["Colour"] or ''}}</td>
-              <td>{{line_item["Quantity_meters"] or '0'}}m</td>
-              <td>${{line_item["Cost_Per_Meter"] or '0.0'}}</td>
-              <td>${{line_item["Line_Item_Total"] or '0.0'}}</td>
-            </tr>
+          <tr>
+            <td>{{line_item["Product"]["Product_Name"]}}</td>
+            <td>
+              {{ (line_item["Product"]["Mill_Item_Number"] + "
+              <br/>" if line_item["Product"]["Mill_Item_Number"] else "")|safe }} {{ ("COMPOSITION: " + line_item["Product"]["Fabric_Composition"]
+              + "
+              <br/>" if line_item["Product"]["Fabric_Composition"] else "")|safe }} {{ ("WIDTH: " + line_item["Product"]["Piece_Width"]
+              + "
+              <br/>" if line_item["Product"]["Piece_Width"] else "")|safe }} {{ ("WEIGHT: " + line_item["Product"]["Weight"] +
+              "
+              <br/>" if line_item["Product"]["Weight"] else "")|safe }} {{ (line_item["Product"]["Additional_Information"] if
+              line_item["Product"]["Additional_Information"] else "")|safe }}
+            </td>
+            <td>{{line_item["Product"]["Colour"] or ''}}</td>
+            <td>{{line_item["Quantity_meters"] or '0'}}m</td>
+            <td>${{line_item["Cost_Per_Meter"] or '0.0'}}</td>
+            <td>${{line_item["Line_Item_Total"] or '0.0'}}</td>
+          </tr>
           {% endfor %}
         </tbody>
         <tfoot>
           <tr>
             <td colspan="6" style="text-align: left;">
-              <b>Special Instructions:</b><br/>
-              {{data["sales_order_details"]["Special_Instructions"] or ""}}
+              <b>Special Instructions:</b>
+              <br/> {{data["sales_order_details"]["Special_Instructions"] or ""}}
             </td>
           </tr>
-          <tr>
-            <td colspan="4" style="border: none; background: initial;"></td>
-            <td><b>Sub Total</b></td>
-            <td>${{data["sales_order_details"]["Grand_Total_ex_GST"]}}</td>
-          </tr>
-          <tr>
-            <td colspan="4" style="border: none; background: initial;"></td>
-            <td><b>GST</b></td>
-            <td>${{data["sales_order_details"]["GST"]}}</td>
-          </tr>
-          <tr>
-            <td colspan="4" style="border: none; background: initial;"></td>
-            <td><b>Total</b></td>
-            <td>${{data["sales_order_details"]["Grand_Total_inc_GST"]}}</td>
-          </tr>
+          <table style="width: 100%;" class="table-total">
+            <tr>
+              <td style="border: none; background: initial;"></td>
+              <td>
+                <b>Sub Total</b>
+              </td>
+              <td>${{data["sales_order_details"]["Grand_Total_ex_GST"]}}</td>
+            </tr>
+            <tr>
+              <td style="border: none; background: initial;"></td>
+              <td>
+                <b>GST</b>
+              </td>
+              <td>${{data["sales_order_details"]["GST"]}}</td>
+            </tr>
+            <tr>
+              <td style="border: none; background: initial;"></td>
+              <td>
+                <b>Total</b>
+              </td>
+              <td>${{data["sales_order_details"]["Grand_Total_inc_GST"]}}</td>
+            </tr>
+          </table>
         </tfoot>
       </table>
       <br/>
@@ -267,26 +336,23 @@
         <tbody>
           <tr>
             <td>
-              {{ (data["bulk_shipment"]["Street_Address_Line_1"] + "<br/>" if data["bulk_shipment"]["Street_Address_Line_1"] else "")|safe }}
-              {{ (data["bulk_shipment"]["Street_Address_Line_2"] + "<br/>" if data["bulk_shipment"]["Street_Address_Line_2"] else "")|safe }}
-              {{ (data["bulk_shipment"]["City"] + "<br/>" if data["bulk_shipment"]["City"] else "")|safe }}
-              {{ (data["bulk_shipment"]["State"] + "<br/>" if data["bulk_shipment"]["State"] else "")|safe }}
-              {{ (data["bulk_shipment"]["Postcode"] + "<br/>" if data["bulk_shipment"]["Postcode"] else "")|safe }}
-              {{ (data["bulk_shipment"]["Delivery_Method"] + "<br/>" if data["bulk_shipment"]["Delivery_Method"] else "")|safe }}
+              {{ (data["bulk_shipment"]["Street_Address_Line_1"] + "
+              <br/>" if data["bulk_shipment"]["Street_Address_Line_1"] else "")|safe }} {{ (data["bulk_shipment"]["Street_Address_Line_2"]
+              + "
+              <br/>" if data["bulk_shipment"]["Street_Address_Line_2"] else "")|safe }} {{ (data["bulk_shipment"]["City"] + "
+              <br/>" if data["bulk_shipment"]["City"] else "")|safe }} {{ (data["bulk_shipment"]["State"] + "
+              <br/>" if data["bulk_shipment"]["State"] else "")|safe }} {{ (data["bulk_shipment"]["Postcode"] + "
+              <br/>" if data["bulk_shipment"]["Postcode"] else "")|safe }} {{ (data["bulk_shipment"]["Delivery_Method"] + "
+              <br/>" if data["bulk_shipment"]["Delivery_Method"] else "")|safe }}
             </td>
             <td>
-              <p>Strike Off:
-                {{data["strike_off"]["Received_Date"] if data["strike_off"] != None else "N/A"}}
+              <p>Strike Off: {{data["strike_off"]["Received_Date"] if data["strike_off"] != None else "N/A"}}
               </p>
-              <p>Lab Dip:
-                 {{data["lab_dip"]["Received_Date"] if data["lab_dip"] != None else "N/A"}}
+              <p>Lab Dip: {{data["lab_dip"]["Received_Date"] if data["lab_dip"] != None else "N/A"}}
               </p>
-              <p>Shipping Sample:
-                {{data["shipping_sample_shipment_date"]}} (ex Mill)</p>
-              <p>Sampling:
-                {{data["sample_shipment_date"]}} (ex Mill)</p>
-              <p>Bulk:
-                {{data["bulk_shipment_date"]}} (ex Mill)</p>
+              <p>Shipping Sample: {{data["shipping_sample_shipment_date"]}} (ex Mill)</p>
+              <p>Sampling: {{data["sample_shipment_date"]}} (ex Mill)</p>
+              <p>Bulk: {{data["bulk_shipment_date"]}} (ex Mill)</p>
             </td>
             <td>
               <p>30 days on invoice</p>
