@@ -103,7 +103,8 @@ def sales_confirmation():
         'page-width': '20in',
         'no-outline': None
     }
-    pdf = pdfkit.from_string(html, False, options=options)
+    config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+    pdf = pdfkit.from_string(html, False, options=options, configuration=config)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
     sales_order_id = request.args.get('sales_order_id')
