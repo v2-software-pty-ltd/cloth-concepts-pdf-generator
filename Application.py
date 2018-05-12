@@ -1,14 +1,16 @@
-from flask import Flask, request
-from flask import render_template
-from flask_weasyprint import HTML, render_pdf
+from flask import Flask, request, make_response, render_template
 import json
 import requests
+import logging
+import os
+import pdfkit
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
-
-@app.route('/sales-confirmation')
-def sales_confirmation():
+@app.route('/sales-confirmation-html')
+def sales_confirmation_html():
     sales_order_id = request.args.get('sales_order_id')
     if sales_order_id is None:
         sales_order_id = "2999925000000387032"
@@ -83,5 +85,33 @@ def sales_confirmation():
         "lab_dip": lab_dip
     }
 
+
     html = render_template('./sales_confirmation.html', title='Sales Order Confirmation', data=data)
-    return render_pdf(HTML(string=html))
+    return html
+
+@app.route('/sales-confirmation')
+def sales_confirmation():
+    html = sales_confirmation_html()
+    options = {
+        'page-size': 'A4',
+        'dpi': 240,
+        'margin-top': '0.15in',
+        'margin-right': '0.15in',
+        'margin-bottom': '0.15in',
+        'margin-left': '0.15in',
+        'encoding': "UTF-8",
+        'page-width': '20in',
+        'no-outline': None
+    }
+    pdf = pdfkit.from_string(html, False, options=options)
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    sales_order_id = request.args.get('sales_order_id')
+    if sales_order_id is None:
+        sales_order_id = "2999925000000387032"
+    response.headers['Content-Disposition'] = "inline; filename=sales-order-confirmation-" + sales_order_id + ".pdf"
+    return response, 200
+
+port = int(os.getenv('PORT', 8084))
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=port)
