@@ -191,6 +191,14 @@
     .table-with-border1 td {
       font-size: 16px;
     }
+
+    .no-margin {
+      margin: 0;
+    }
+
+    .page-break-inside\(avoid\) {
+      page-break-inside: avoid;
+    }
   </style>
   <main id="wrapper">
     <section id="header">
@@ -220,10 +228,10 @@
       <div class="customer-table">
         <table style="width: 100%;">
           <tr>
-            <td style="width: 20px;">
-              <h1>Customer:</h1>
+            <td style="width: 50px;">
+              <h1 class="no-margin">Customer:</h1>
             </td>
-            <td style="width: 410px;">
+            <td style="width: 350px;">
               {{data["client_name"]}}
             </td>
             <td>Date:</td>
@@ -292,7 +300,7 @@
               <br/> {{data["sales_order_details"]["Special_Instructions"] or ""}}
             </td>
           </tr>
-          <table style="width: 100%;" class="table-total">
+          <table style="width: 30%;" class="table-total">
             <tr>
               <td style="border: none; background: initial;"></td>
               <td>
@@ -319,7 +327,7 @@
       </table>
       <br/>
       <br/>
-      <table class="table-with-border">
+      <table class="page-break-inside(avoid) table-with-border">
         <thead>
           <tr>
             <th style="width: 40%;">
