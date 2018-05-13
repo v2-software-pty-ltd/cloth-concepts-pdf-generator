@@ -70,6 +70,8 @@ def sales_confirmation_html():
         "Ex_mill_date"] if sample_shipment != None and "Ex_mill_date" in sample_shipment else "N/A"
     bulk_shipment_date = bulk_shipment[
         "Ex_mill_date"] if bulk_shipment != None and "Ex_mill_date" in bulk_shipment else "N/A"
+    client_order_number = sales_order_details["Client_Order_Number"] if "Client_Order_Number" in sales_order_details and sales_order_details[
+        "Client_Order_Number"] != None else ""
 
     data = {
         "client_contact_name": client_contact_name,
@@ -83,7 +85,8 @@ def sales_confirmation_html():
         "bulk_shipment_date": bulk_shipment_date,
         "sales_order_details": sales_order_details,
         "strike_off": strike_off,
-        "lab_dip": lab_dip
+        "lab_dip": lab_dip,
+        "client_order_number": client_order_number
     }
 
 
