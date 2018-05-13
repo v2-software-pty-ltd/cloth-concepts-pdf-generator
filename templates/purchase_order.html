@@ -236,17 +236,9 @@
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td>
-              {{data["client_contact_name"]}}
-            </td>
-            <td>Customer Order #</td>
-            <td>TODO</td>
-          </tr>
-          <tr>
             <td colspan="2"></td>
-            <td>Sales Cfm #</td>
-            <td>SC {{data["purchase_order_details"]["Sales_Order_Number"]}}
+            <td>Order #</td>
+            <td>PO {{data["purchase_order_details"]["Name"]}}
             </td>
           </tr>
         </table>
@@ -280,8 +272,8 @@
               line_item["Product"]["Additional_Information"] else "")|safe }}
             </td>
             <td>{{line_item["Product"]["Colour"] or ''}}</td>
-            <td>{{line_item["Quantity_meters"] or '0'}}m</td>
-            <td>${{line_item["Cost_Per_Meter"] or '0.0'}}</td>
+            <td>{{line_item["Quantity_m"] or '0'}}m</td>
+            <td>${{line_item["Cost_per_meter"] or '0.0'}}</td>
             <td>${{line_item["Line_Item_Total"] or '0.0'}}</td>
           </tr>
           {% endfor %}
