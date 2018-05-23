@@ -359,10 +359,11 @@
       <br/>
       <br/>
       <div id="terms">
-        <p>1. The quantity and amount can be accepted by 10% more or less.</p>
-        <p>2. No responsibility or claim will be accepted after fabric has been cut.</p>
-        <p>3. Width and weight tolerence +/- 5%.</p>
-        <p>4. Claims, if any, must be made within 7 days of delivery.</p>
+        <div id="terms">
+          {% for term in data["sales_order_details"]["Terms_and_Conditions"].split("\n") %}
+          <p>{{term}}</p>
+          {% endfor %}
+        </div>
       </div>
     </section>
   </main>

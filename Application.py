@@ -228,8 +228,6 @@ def purchase_order():
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
     purchase_order_id = request.args.get('purchase_order_id')
-    if purchase_order_id is None:
-        purchase_order_id = "2999925000000387032"
     response.headers['Content-Disposition'] = "inline; filename=purchase-order-" + purchase_order_id + ".pdf"
     return response, 200
 
