@@ -5,6 +5,7 @@ import logging
 import os
 import pdfkit
 import platform
+from dateutil import parser
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -72,6 +73,9 @@ def sales_confirmation_html():
         "Ex_mill_date"] if bulk_shipment != None and "Ex_mill_date" in bulk_shipment else "N/A"
     client_order_number = sales_order_details["Client_Order_Number"] if "Client_Order_Number" in sales_order_details and sales_order_details[
         "Client_Order_Number"] != None else ""
+
+    created_date = parser.parse(sales_order_details["Created_Time"])
+    sales_order_details["Date"] = created_date.strftime("%d-%B-%Y")
 
     data = {
         "client_contact_name": client_contact_name,
@@ -145,6 +149,9 @@ def purchase_order_html():
     client_contact_name = purchase_order_details["Client_Contact"]["name"] if "Client_Contact" in purchase_order_details and \
                                                                            purchase_order_details[
                                                                                "Client_Contact"] != None else ""
+
+    created_date = parser.parse(purchase_order_details["Created_Time"])
+    purchase_order_details["Date"] = created_date.strftime("%d-%B-%Y")
 
     product_dict = {}
     for product in output_dict["product_data"]:
