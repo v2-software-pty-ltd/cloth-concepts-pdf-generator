@@ -74,7 +74,7 @@ def sales_confirmation_html():
     client_order_number = sales_order_details["Client_Order_Number"] if "Client_Order_Number" in sales_order_details and sales_order_details[
         "Client_Order_Number"] != None else ""
 
-    created_date = parser.parse(sales_order_details["Created_Time"])
+    created_date = parser.parse(sales_order_details["Date"] or sales_order_details["Created_Time"])
     sales_order_details["Date"] = created_date.strftime("%d-%B-%Y")
 
     data = {
