@@ -274,7 +274,7 @@
               <br/>" if line_item["Product"]["Weight"] else "")|safe }} {{ (line_item["Product"]["Additional_Information"] if
               line_item["Product"]["Additional_Information"] else "")|safe }}
             </td>
-            <td>{{line_item["Product"]["Colour"] or ''}}</td>
+            <td>{{line_item["Colour"] or line_item["Product"]["Colour"] or ''}}</td>
             <td>{{line_item["Quantity_meters"] or '0'}}m</td>
             <td>${{line_item["Cost_Per_Meter"] or '0.0'}}</td>
             <td>${{line_item["Line_Item_Total"] or '0.0'}}</td>
@@ -332,14 +332,13 @@
         <tbody>
           <tr>
             <td>
-              {{ (data["bulk_shipment"]["Street_Address_Line_1"] + "
-              <br/>" if data["bulk_shipment"]["Street_Address_Line_1"] else "")|safe }} {{ (data["bulk_shipment"]["Street_Address_Line_2"]
-              + "
-              <br/>" if data["bulk_shipment"]["Street_Address_Line_2"] else "")|safe }} {{ (data["bulk_shipment"]["City"] + "
-              <br/>" if data["bulk_shipment"]["City"] else "")|safe }} {{ (data["bulk_shipment"]["State"] + "
-              <br/>" if data["bulk_shipment"]["State"] else "")|safe }} {{ (data["bulk_shipment"]["Postcode"] + "
-              <br/>" if data["bulk_shipment"]["Postcode"] else "")|safe }} {{ (data["bulk_shipment"]["Delivery_Method"] + "
-              <br/>" if data["bulk_shipment"]["Delivery_Method"] else "")|safe }}
+              {{ (data["bulk_shipment"]["Street_Address_Line_1"] + "<br/>" if data["bulk_shipment"]["Street_Address_Line_1"] else "")|safe }}
+              {{ (data["bulk_shipment"]["Street_Address_Line_2"] + "<br/>" if data["bulk_shipment"]["Street_Address_Line_2"] else "")|safe }}
+              {{ (data["bulk_shipment"]["City"] + "<br/>" if data["bulk_shipment"]["City"] else "")|safe }}
+              {{ (data["bulk_shipment"]["State"] + "<br/>" if data["bulk_shipment"]["State"] else "")|safe }}
+              {{ (data["bulk_shipment"]["Postcode"] + "<br/>" if data["bulk_shipment"]["Postcode"] else "")|safe }}
+              {{ ("Delivery method: " + data["bulk_shipment"]["Delivery_Method"] + "<br/>" if data["bulk_shipment"]["Delivery_Method"] else "")|safe }}
+              {{ ("Delivery instructions: " + data["sales_order_details"]["Delivery_Instructions"] + "<br/>" if data["sales_order_details"]["Delivery_Instructions"] else "")|safe }}
             </td>
             <td>
               <p>Strike Off: {{data["strike_off"]["Received_Date"] if data["strike_off"] != None else "N/A"}}
