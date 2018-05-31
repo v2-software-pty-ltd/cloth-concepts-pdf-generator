@@ -268,6 +268,7 @@
             <th>Colour</th>
             <th>Quantity<br>(m)</th>
             <th>Unit Price<br>AUD / m)</th>
+            <th>Surcharge (AUD)</th>
             <th>Total<br>(AUD)</th>
           </tr>
         </thead>
@@ -289,13 +290,14 @@
             <td>{{line_item["Colour"] or line_item["Product"]["Colour"] or ''}}</td>
             <td>{{line_item["Quantity_meters"] or '0'}}m</td>
             <td>${{line_item["Cost_Per_Meter"] or '0.0'}}</td>
+            <td>${{line_item["Surcharge"] or '0.0'}}</td>
             <td>${{line_item["Line_Item_Total"] or '0.0'}}</td>
           </tr>
           {% endfor %}
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="6" style="text-align: left;">
+            <td colspan="7" style="text-align: left;">
               <b>Special Instructions:</b>
               <br/> {{data["sales_order_details"]["Special_Instructions"] or ""}}
             </td>
