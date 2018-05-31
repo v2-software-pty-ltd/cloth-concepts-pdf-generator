@@ -340,20 +340,20 @@
                {{ ("Delivery instructions: " + data["purchase_order_details"]["Delivery_Instructions"] + "<br/>" if data["purchase_order_details"]["Delivery_Instructions"] else "")|safe }}
             </td>
             <td>
-              {% if data["strike_off"] != None %}
-              <p>Strike Off: {{data["strike_off"]["Received_Date"]}}</p>
+              {% if data["purchase_order_details"]["Strike_Off_ETA"] != None %}
+              <p>Strike Off: {{data["purchase_order_details"]["Strike_Off_ETA"]}}</p>
               {% endif %}
               {% if data["lab_dip"] != None %}
               <p>Lab Dip: {{data["lab_dip"]["Received_Date"] if data["lab_dip"] != None else "N/A"}}</p>
               {% endif %}
-              {% if data["shipping_sample_shipment_date"] != 'N/A' %}
-              <p>Shipping Sample: {{data["shipping_sample_shipment_date"]}} (ex Mill)</p>
+              {% if data["purchase_order_details"]["Production_Completion_Date"] != None %}
+              <p>Shipping Sample: {{data["purchase_order_details"]["Production_Completion_Date"]}} (ex Mill)</p>
               {% endif %}
-              {% if data["sample_shipment_date"] != 'N/A' %}
-              <p>Sampling: {{data["sample_shipment_date"]}} (ex Mill)</p>
+              {% if data["purchase_order_details"]["Sample_ETA"] != None %}
+              <p>Sampling: {{data["purchase_order_details"]["Sample_ETA"]}} (ex Mill)</p>
               {% endif %}
-              {% if data["bulk_shipment_date"] != 'N/A' %}
-              <p>Bulk: {{data["bulk_shipment_date"]}} (ex Mill)</p>
+              {% if data["purchase_order_details"]["Bulk_Delivery_Date"] != None %}
+              <p>Bulk: {{data["purchase_order_details"]["Bulk_Delivery_Date"]}} (ex Mill)</p>
               {% endif %}
             </td>
           </tr>
