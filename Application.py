@@ -65,6 +65,9 @@ def sales_confirmation_html():
         elif (shipment_type == "Shipping Sample"):
             shipping_sample_shipment = shipment
 
+    if bulk_shipment == None:
+        bulk_shipment = output_dict["purchase_order_record"]
+
     shipping_sample_shipment_date = shipping_sample_shipment[
         "Ex_mill_date"] if shipping_sample_shipment != None and "Ex_mill_date" in shipping_sample_shipment else "N/A"
     sample_shipment_date = sample_shipment[
@@ -88,6 +91,7 @@ def sales_confirmation_html():
         "sample_shipment_date": sample_shipment_date,
         "bulk_shipment_date": bulk_shipment_date,
         "sales_order_details": sales_order_details,
+        "purchase_order_data": output_dict["purchase_order_record"],
         "strike_off": strike_off,
         "lab_dip": lab_dip,
         "client_order_number": client_order_number
