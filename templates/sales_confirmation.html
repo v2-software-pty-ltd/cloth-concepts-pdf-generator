@@ -353,13 +353,17 @@
               {{ ("Delivery instructions: " + data["sales_order_details"]["Delivery_Instructions"] + "<br/>" if data["sales_order_details"]["Delivery_Instructions"] else "")|safe }}
             </td>
             <td>
-              <p>Strike Off: {{data["strike_off"]["Received_Date"] if data["strike_off"] != None else "N/A"}}
-              </p>
-              <p>Lab Dip: {{data["lab_dip"]["Received_Date"] if data["lab_dip"] != None else "N/A"}}
-              </p>
+              {% if data["strike_off"] != None %}
+              <p>Strike Off: {{data["strike_off"]["Received_Date"]}}</p>
+              {% endif %} {% if data["lab_dip"] != None %}
+              <p>Lab Dip: {{data["lab_dip"]["Received_Date"] if data["lab_dip"] != None else "N/A"}}</p>
+              {% endif %} {% if data["shipping_sample_shipment_date"] != 'N/A' %}
               <p>Shipping Sample: {{data["shipping_sample_shipment_date"]}} (ex Mill)</p>
+              {% endif %} {% if data["sample_shipment_date"] != 'N/A' %}
               <p>Sampling: {{data["sample_shipment_date"]}} (ex Mill)</p>
+              {% endif %} {% if data["bulk_shipment_date"] != 'N/A' %}
               <p>Bulk: {{data["bulk_shipment_date"]}} (ex Mill)</p>
+              {% endif %}
             </td>
             <td>
               <p>30 days on invoice</p>
