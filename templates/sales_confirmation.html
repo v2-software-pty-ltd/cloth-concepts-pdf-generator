@@ -360,11 +360,11 @@
               {% endif %} {% if data["lab_dip"] != None %}
               <p>Lab Dip: {{data["lab_dip"]["Received_Date"] if data["lab_dip"] != None else "N/A"}}</p>
               {% endif %} {% if data["shipping_sample_shipment_date"] != 'N/A' %}
-              <p>Shipping Sample: {{data["shipping_sample_shipment_date"]}} (ex Mill)</p>
+              <p>Shipping Sample: {{data["shipping_sample_shipment_date"]}} (EX-MILL)</p>
               {% endif %} {% if data["sample_shipment_date"] != 'N/A' %}
-              <p>Sampling: {{data["sample_shipment_date"]}} (ex Mill)</p>
+              <p>Sampling: {{data["sample_shipment_date"]}} (EX-MILL)</p>
               {% endif %} {% if data["bulk_shipment_date"] != 'N/A' %}
-              <p>Bulk: {{data["bulk_shipment_date"]}} (ex Mill)</p>
+              <p>Bulk: {{data["bulk_shipment_date"]}} (EX-MILL)</p>
               {% endif %}
             </td>
             <td>
