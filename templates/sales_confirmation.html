@@ -277,15 +277,12 @@
           <tr>
             <td>{{line_item["Product"]["Product_Name"]}}</td>
             <td>
-              {{ (line_item["Product"]["Mill_Item_Number"] + "
-              <br/>" if line_item["Product"]["Mill_Item_Number"] else "")|safe }} {{ ("COMPOSITION: " + line_item["Product"]["Fabric_Composition"]
-              + "
-              <br/>" if line_item["Product"]["Fabric_Composition"] else "")|safe }} {{ ("WIDTH: " + line_item["Product"]["Piece_Width"]
-              + "
-              <br/>" if line_item["Product"]["Piece_Width"] else "")|safe }} {{ ("WEIGHT: " + line_item["Product"]["Weight"] +
-              "
-              <br/>" if line_item["Product"]["Weight"] else "")|safe }} {{ (line_item["Product"]["Additional_Information"] if
-              line_item["Product"]["Additional_Information"] else "")|safe }}
+              {{ (line_item["Product"]["Mill_Item_Number"] + "<br/>" if line_item["Product"]["Mill_Item_Number"] else "")|safe }}
+              {{ ("COMPOSITION: " + line_item["Product"]["Fabric_Composition"] + "<br/>" if line_item["Product"]["Fabric_Composition"] else "")|safe }}
+              {{ ("PIECE WIDTH: " + line_item["Product"]["Piece_Width"] + "<br/>" if line_item["Product"]["Piece_Width"] else "")|safe }}
+              {{ ("WIDTH: " + line_item["Product"]["Width"] + "<br/>" if line_item["Product"]["Width"] else "")|safe }}
+              {{ ("WEIGHT: " + line_item["Product"]["Weight"] + "<br/>" if line_item["Product"]["Weight"] else "")|safe }}
+              {{ (line_item["Product"]["Additional_Information"] if line_item["Product"]["Additional_Information"] else "")|safe }}
             </td>
             <td>{{line_item["Colour"] or line_item["Product"]["Colour"] or ''}}</td>
             <td>{{line_item["Quantity_meters"] or '0'}}m</td>
@@ -346,12 +343,12 @@
         <tbody>
           <tr>
             <td>
-              {{ (data["bulk_shipment"]["Street_Address_Line_1"] + "<br/>" if data["bulk_shipment"]["Street_Address_Line_1"] else "")|safe }}
-              {{ (data["bulk_shipment"]["Street_Address_Line_2"] + "<br/>" if data["bulk_shipment"]["Street_Address_Line_2"] else "")|safe }}
-              {{ (data["bulk_shipment"]["City"] + "<br/>" if data["bulk_shipment"]["City"] else "")|safe }}
-              {{ (data["bulk_shipment"]["State"] + "<br/>" if data["bulk_shipment"]["State"] else "")|safe }}
-              {{ (data["bulk_shipment"]["Postcode"] + "<br/>" if data["bulk_shipment"]["Postcode"] else "")|safe }}
-              {{ ("Delivery method: " + data["bulk_shipment"]["Delivery_Method"] + "<br/>" if data["bulk_shipment"]["Delivery_Method"] else "")|safe }}
+              {{ (data["sales_order_details"]["Street_Address_Line_1"] + "<br/>" if data["sales_order_details"]["Street_Address_Line_1"] else "")|safe }}
+              {{ (data["sales_order_details"]["Street_Address_Line_2"] + "<br/>" if data["sales_order_details"]["Street_Address_Line_2"] else "")|safe }}
+              {{ (data["sales_order_details"]["City"] + "<br/>" if data["sales_order_details"]["City"] else "")|safe }}
+              {{ (data["sales_order_details"]["State"] + "<br/>" if data["sales_order_details"]["State"] else "")|safe }}
+              {{ (data["sales_order_details"]["Postcode"] + "<br/>" if data["sales_order_details"]["Postcode"] else "")|safe }}
+              {{ ("Delivery method: " + data["sales_order_details"]["Delivery_Method_for_bulk_shipment"] + "<br/>" if data["sales_order_details"]["Delivery_Method_for_bulk_shipment"] else "")|safe }}
               {{ ("Delivery instructions: " + data["sales_order_details"]["Delivery_Instructions"] + "<br/>" if data["sales_order_details"]["Delivery_Instructions"] else "")|safe }}
               {{ ("Shipping Sample: " + data["sales_order_details"]["Shipping_Sample_m"] + "<br/>" if data["sales_order_details"]["Shipping_Sample_m"] else "")|safe }}
             </td>

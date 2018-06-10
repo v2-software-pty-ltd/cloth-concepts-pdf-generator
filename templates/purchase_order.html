@@ -266,15 +266,12 @@
           <tr>
             <td>{{line_item["Product"]["Product_Name"]}}</td>
             <td>
-              {{ (line_item["Product"]["Mill_Item_Number"] + "
-              <br/>" if line_item["Product"]["Mill_Item_Number"] else "")|safe }} {{ ("COMPOSITION: " + line_item["Product"]["Fabric_Composition"]
-              + "
-              <br/>" if line_item["Product"]["Fabric_Composition"] else "")|safe }} {{ ("WIDTH: " + line_item["Product"]["Piece_Width"]
-              + "
-              <br/>" if line_item["Product"]["Piece_Width"] else "")|safe }} {{ ("WEIGHT: " + line_item["Product"]["Weight"] +
-              "
-              <br/>" if line_item["Product"]["Weight"] else "")|safe }} {{ (line_item["Product"]["Additional_Information"] if
-              line_item["Product"]["Additional_Information"] else "")|safe }}
+              {{ (line_item["Product"]["Mill_Item_Number"] + "<br/>" if line_item["Product"]["Mill_Item_Number"] else "")|safe }}
+              {{ ("COMPOSITION: " + line_item["Product"]["Fabric_Composition"] + "<br/>" if line_item["Product"]["Fabric_Composition"] else "")|safe }}
+              {{ ("PIECE WIDTH: " + line_item["Product"]["Piece_Width"] + "<br/>" if line_item["Product"]["Piece_Width"] else "")|safe }}
+              {{ ("WIDTH: " + line_item["Product"]["Width"] + "<br/>" if line_item["Product"]["Width"] else "")|safe }}
+              {{ ("WEIGHT: " + line_item["Product"]["Weight"] + "<br/>" if line_item["Product"]["Weight"] else "")|safe }}
+              {{ (line_item["Product"]["Additional_Information"] if line_item["Product"]["Additional_Information"] else "")|safe }}
             </td>
             <td>{{line_item["Colour"] or line_item["Product"]["Colour"] or ''}}</td>
             <td>{{line_item["Quantity_m"] or '0'}}m</td>
