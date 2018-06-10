@@ -339,6 +339,7 @@
                {{ (data["purchase_order_details"]["Postcode"] + "<br/>" if data["purchase_order_details"]["Postcode"] else "")|safe }}
                {{ ("Delivery method: " + data["purchase_order_details"]["Delivery_Method"] + "<br/>" if data["purchase_order_details"]["Delivery_Method"] else "")|safe }}
                {{ ("Delivery instructions: " + data["purchase_order_details"]["Delivery_Instructions"] + "<br/>" if data["purchase_order_details"]["Delivery_Instructions"] else "")|safe }}
+               {{ ("Shipping Sample: " + data["purchase_order_details"]["Shipping_Sample_m"] + "<br/>" if data["purchase_order_details"]["Shipping_Sample_m"] else "")|safe }}
             </td>
             <td>
               {% if data["purchase_order_details"]["Strike_Off_ETA"] != None %}
