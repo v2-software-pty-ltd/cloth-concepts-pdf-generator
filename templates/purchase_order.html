@@ -345,14 +345,14 @@
               {% if data["lab_dip"] != None %}
               <p>Lab Dip: {{data["lab_dip"]["Received_Date"] if data["lab_dip"] != None else "N/A"}}</p>
               {% endif %}
-              {% if data["purchase_order_details"]["Production_Completion_Date"] != None %}
-              <p>Shipping Sample: {{data["purchase_order_details"]["Production_Completion_Date"]}} (EX-MILL)</p>
+              {% if data["shipping_sample_shipment_date"] != None %}
+              <p>Shipping Sample: {{data["shipping_sample_shipment_date"]}} (EX-MILL)</p>
               {% endif %}
-              {% if data["purchase_order_details"]["Sample_ETA"] != None %}
-              <p>Sampling: {{data["purchase_order_details"]["Sample_ETA"]}} (EX-MILL)</p>
+              {% if data["sample_shipment_date"] != None %}
+              <p>Sampling: {{data["sample_shipment_date"]}} (EX-MILL)</p>
               {% endif %}
-              {% if data["purchase_order_details"]["Bulk_Delivery_Date"] != None %}
-              <p>Bulk: {{data["purchase_order_details"]["Bulk_Delivery_Date"]}} (EX-MILL)</p>
+              {% if data["bulk_shipment_date"] != None %}
+              <p>Bulk: {{data["bulk_shipment_date"]}} (EX-MILL)</p>
               {% endif %}
             </td>
           </tr>

@@ -69,19 +69,19 @@ def sales_confirmation_html():
             shipping_sample_shipment = shipment
 
     shipping_sample_shipment_date = "N/A"
-    if shipping_sample_shipment != None and "Ex_mill_date" in shipping_sample_shipment
+    if shipping_sample_shipment != None and "Ex_mill_date" in shipping_sample_shipment:
         shipping_sample_shipment_date = shipping_sample_shipment["Ex_mill_date"]
     else if "Shipping_Sample_ETA" in sales_order_details:
         shipping_sample_shipment_date = sales_order_details["Shipping_Sample_ETA"]
 
     sample_shipment_date = "N/A"
-    if sample_shipment != None and "Ex_mill_date" in sample_shipment
+    if sample_shipment != None and "Ex_mill_date" in sample_shipment:
         sample_shipment_date = sample_shipment["Ex_mill_date"]
     else if "Sample_ETA" in sales_order_details:
         sample_shipment_date = sales_order_details["Sample_ETA"]
 
     bulk_shipment_date = "N/A"
-    if bulk_shipment != None and "Ex_mill_date" in bulk_shipment
+    if bulk_shipment != None and "Ex_mill_date" in bulk_shipment:
         bulk_shipment_date = bulk_shipment["Ex_mill_date"]
     else if "Bulk_Delivery_Date" in sales_order_details:
         bulk_shipment_date = sales_order_details["Bulk_Delivery_Date"]
@@ -202,19 +202,19 @@ def purchase_order_html():
             shipping_sample_shipment = shipment
 
     shipping_sample_shipment_date = "N/A"
-    if shipping_sample_shipment != None and "Ex_mill_date" in shipping_sample_shipment
+    if shipping_sample_shipment != None and "Ex_mill_date" in shipping_sample_shipment:
         shipping_sample_shipment_date = shipping_sample_shipment["Ex_mill_date"]
-    else if "Shipping_Sample_ETA" in purchase_order_details:
-        shipping_sample_shipment_date = purchase_order_details["Shipping_Sample_ETA"]
+    else if "Production_Completion_Date" in purchase_order_details:
+        shipping_sample_shipment_date = purchase_order_details["Production_Completion_Date"]
 
     sample_shipment_date = "N/A"
-    if sample_shipment != None and "Ex_mill_date" in sample_shipment
+    if sample_shipment != None and "Ex_mill_date" in sample_shipment:
         sample_shipment_date = sample_shipment["Ex_mill_date"]
     else if "Sample_ETA" in purchase_order_details:
         sample_shipment_date = purchase_order_details["Sample_ETA"]
 
     bulk_shipment_date = "N/A"
-    if bulk_shipment != None and "Ex_mill_date" in bulk_shipment
+    if bulk_shipment != None and "Ex_mill_date" in bulk_shipment:
         bulk_shipment_date = bulk_shipment["Ex_mill_date"]
     else if "Bulk_Delivery_Date" in purchase_order_details:
         bulk_shipment_date = purchase_order_details["Bulk_Delivery_Date"]
