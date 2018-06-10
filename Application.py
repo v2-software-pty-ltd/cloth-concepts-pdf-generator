@@ -24,7 +24,9 @@ def sales_confirmation_html():
         "https://crm.zoho.com/crm/v2/functions/data_for_sales_confirmation/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b",
         data=payload)
     result_dict = json.loads(results.text)
-    print(result_dict)
+
+    if ("details" not in result_dict):
+        print("Problem with request: " + result_dict)
     output_json = result_dict['details']['output']
     output_dict = json.loads(output_json)
     sales_order_details = output_dict["sales_order_data"]
@@ -66,15 +68,24 @@ def sales_confirmation_html():
         elif (shipment_type == "Shipping Sample"):
             shipping_sample_shipment = shipment
 
-    if bulk_shipment == None:
-        bulk_shipment = output_dict["purchase_order_record"]
+    shipping_sample_shipment_date = "N/A"
+    if shipping_sample_shipment != None and "Ex_mill_date" in shipping_sample_shipment
+        shipping_sample_shipment_date = shipping_sample_shipment["Ex_mill_date"]
+    else if "Shipping_Sample_ETA" in sales_order_details:
+        shipping_sample_shipment_date = sales_order_details["Shipping_Sample_ETA"]
 
-    shipping_sample_shipment_date = shipping_sample_shipment[
-        "Ex_mill_date"] if shipping_sample_shipment != None and "Ex_mill_date" in shipping_sample_shipment else "N/A"
-    sample_shipment_date = sample_shipment[
-        "Ex_mill_date"] if sample_shipment != None and "Ex_mill_date" in sample_shipment else "N/A"
-    bulk_shipment_date = bulk_shipment[
-        "Ex_mill_date"] if bulk_shipment != None and "Ex_mill_date" in bulk_shipment else "N/A"
+    sample_shipment_date = "N/A"
+    if sample_shipment != None and "Ex_mill_date" in sample_shipment
+        sample_shipment_date = sample_shipment["Ex_mill_date"]
+    else if "Sample_ETA" in sales_order_details:
+        sample_shipment_date = sales_order_details["Sample_ETA"]
+
+    bulk_shipment_date = "N/A"
+    if bulk_shipment != None and "Ex_mill_date" in bulk_shipment
+        bulk_shipment_date = bulk_shipment["Ex_mill_date"]
+    else if "Bulk_Delivery_Date" in sales_order_details:
+        bulk_shipment_date = sales_order_details["Bulk_Delivery_Date"]
+
     client_order_number = sales_order_details["Client_Order_Number"] if "Client_Order_Number" in sales_order_details and sales_order_details[
         "Client_Order_Number"] != None else ""
 
@@ -190,12 +201,23 @@ def purchase_order_html():
         elif (shipment_type == "Shipping Sample"):
             shipping_sample_shipment = shipment
 
-    shipping_sample_shipment_date = shipping_sample_shipment[
-        "Ex_mill_date"] if shipping_sample_shipment != None and "Ex_mill_date" in shipping_sample_shipment else "N/A"
-    sample_shipment_date = sample_shipment[
-        "Ex_mill_date"] if sample_shipment != None and "Ex_mill_date" in sample_shipment else "N/A"
-    bulk_shipment_date = bulk_shipment[
-        "Ex_mill_date"] if bulk_shipment != None and "Ex_mill_date" in bulk_shipment else "N/A"
+    shipping_sample_shipment_date = "N/A"
+    if shipping_sample_shipment != None and "Ex_mill_date" in shipping_sample_shipment
+        shipping_sample_shipment_date = shipping_sample_shipment["Ex_mill_date"]
+    else if "Shipping_Sample_ETA" in purchase_order_details:
+        shipping_sample_shipment_date = purchase_order_details["Shipping_Sample_ETA"]
+
+    sample_shipment_date = "N/A"
+    if sample_shipment != None and "Ex_mill_date" in sample_shipment
+        sample_shipment_date = sample_shipment["Ex_mill_date"]
+    else if "Sample_ETA" in purchase_order_details:
+        sample_shipment_date = purchase_order_details["Sample_ETA"]
+
+    bulk_shipment_date = "N/A"
+    if bulk_shipment != None and "Ex_mill_date" in bulk_shipment
+        bulk_shipment_date = bulk_shipment["Ex_mill_date"]
+    else if "Bulk_Delivery_Date" in purchase_order_details:
+        bulk_shipment_date = purchase_order_details["Bulk_Delivery_Date"]
 
     data = {
         "client_contact_name": client_contact_name,

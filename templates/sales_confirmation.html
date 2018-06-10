@@ -355,13 +355,17 @@
             <td>
               {% if data["strike_off"] != None %}
               <p>Strike Off: {{data["strike_off"]["Received_Date"]}}</p>
-              {% endif %} {% if data["lab_dip"] != None %}
+              {% endif %}
+              {% if data["lab_dip"] != None %}
               <p>Lab Dip: {{data["lab_dip"]["Received_Date"] if data["lab_dip"] != None else "N/A"}}</p>
-              {% endif %} {% if data["shipping_sample_shipment_date"] != 'N/A' %}
+              {% endif %}
+              {% if data["shipping_sample_shipment_date"] != 'N/A' %}
               <p>Shipping Sample: {{data["shipping_sample_shipment_date"]}} (EX-MILL)</p>
-              {% endif %} {% if data["sample_shipment_date"] != 'N/A' %}
+              {% endif %}
+              {% if data["sample_shipment_date"] != 'N/A' %}
               <p>Sampling: {{data["sample_shipment_date"]}} (EX-MILL)</p>
-              {% endif %} {% if data["bulk_shipment_date"] != 'N/A' %}
+              {% endif %}
+              {% if data["bulk_shipment_date"] != 'N/A' %}
               <p>Bulk: {{data["bulk_shipment_date"]}} (EX-MILL)</p>
               {% endif %}
             </td>
