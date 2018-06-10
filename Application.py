@@ -24,6 +24,7 @@ def sales_confirmation_html():
         "https://crm.zoho.com/crm/v2/functions/data_for_sales_confirmation/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b",
         data=payload)
     result_dict = json.loads(results.text)
+    print(result_dict)
     output_json = result_dict['details']['output']
     output_dict = json.loads(output_json)
     sales_order_details = output_dict["sales_order_data"]
