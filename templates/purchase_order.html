@@ -240,7 +240,17 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2"></td>
+            <td colspan="2">
+              {% if data["supplier"]["Phone"] %}
+                Phone: {{(data["supplier"]["Phone"])}} <br/>
+              {% endif %}
+              {% if data["supplier"]["Street"] %}
+                Address: {{data["supplier"]["Street"] or ""}}<br/>
+                       {{data["supplier"]["City"] or ""}}</br>
+                       {{data["supplier"]["State"] or ""}}</br>
+                       {{data["supplier"]["Country"] or ""}}</br>
+              {% endif %}
+            </td>
             <td>Order #</td>
             <td>{{data["purchase_order_details"]["Name"]}}
             </td>

@@ -222,6 +222,7 @@ def purchase_order_html():
     data = {
         "client_contact_name": client_contact_name,
         "client_name": client_name,
+        "supplier": output_dict["supplier"],
         "supplier_name": supplier_name,
         "strike_off_lab_dips": strike_off_lab_dips,
         "sample_shipment": sample_shipment,
