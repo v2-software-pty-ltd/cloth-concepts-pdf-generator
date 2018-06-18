@@ -204,14 +204,14 @@ def purchase_order_html():
     shipping_sample_shipment_date = "N/A"
     if shipping_sample_shipment != None and "Ex_mill_date" in shipping_sample_shipment:
         shipping_sample_shipment_date = shipping_sample_shipment["Ex_mill_date"]
-    elif "Production_Completion_Date" in purchase_order_details:
-        shipping_sample_shipment_date = purchase_order_details["Production_Completion_Date"]
+    elif "Shipping_Sample_ETA" in purchase_order_details:
+        shipping_sample_shipment_date = purchase_order_details["Shipping_Sample_ETA"]
 
     sample_shipment_date = "N/A"
     if sample_shipment != None and "Ex_mill_date" in sample_shipment:
         sample_shipment_date = sample_shipment["Ex_mill_date"]
-    elif "Sample_ETA" in purchase_order_details:
-        sample_shipment_date = purchase_order_details["Sample_ETA"]
+    elif "Sampling_ETA" in purchase_order_details:
+        sample_shipment_date = purchase_order_details["Sampling_ETA"]
 
     bulk_shipment_date = "N/A"
     if bulk_shipment != None and "Ex_mill_date" in bulk_shipment:

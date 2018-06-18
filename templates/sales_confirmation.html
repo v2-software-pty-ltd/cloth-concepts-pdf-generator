@@ -370,7 +370,7 @@
               {% endif %}
             </td>
             <td>
-              <p>30 days on invoice</p>
+              <p>{{data["sales_order_details"]["Payment_Terms"] if "Payment_Terms" in data["sales_order_details"] else "30 days"}}</p>
             </td>
           </tr>
         </tbody>
