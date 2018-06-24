@@ -46,7 +46,7 @@ def sales_confirmation_html():
         return line_item
 
     sales_order_details["Line_Items"] = map(process_line_item, sales_order_details["Line_Items"])
-    has_surcharges = any(line_item["Surcharge"] != "" and line_item["Surcharge"] != None for line_item in sales_order_details["Line_Items"])
+    has_surcharges = any(line_item["Surcharge"] != "" and line_item["Surcharge"] != None and line_item["Surcharge"] > 0 for line_item in sales_order_details["Line_Items"])
 
     strike_off_lab_dips = output_dict["strike_off_lab_dips"]
     strike_off = None
@@ -181,7 +181,7 @@ def purchase_order_html():
         return line_item
 
     purchase_order_details["PO_Line_Items"] = map(process_line_item, purchase_order_details["PO_Line_Items"])
-    has_surcharges = any(line_item["Surcharge"] != "" and line_item["Surcharge"] != None for line_item in sales_order_details["Line_Items"])
+    has_surcharges = any(line_item["Surcharge"] != "" and line_item["Surcharge"] != None and line_item["Surcharge"] > 0 for line_item in sales_order_details["Line_Items"])
 
     strike_off_lab_dips = output_dict["strike_off_lab_dips"]
     strike_off = None
