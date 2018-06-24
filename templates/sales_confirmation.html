@@ -238,27 +238,17 @@
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td>
-              {{data["client_contact_name"]}}
+            <td colspan="2">
+              {% if data["client_contact_name"] %} Contact Name: {{(data["client_contact_name"])}}
+              <br/> {% endif %} {% if data["client"]["Phone"] %} Phone: {{(data["client"]["Phone"])}}
+              <br/> {% endif %} {% if data["client"]["Head_office_Details"] %} Address: {{data["client"]["Head_office_Details"] or ""}} {%
+              endif %}
             </td>
             <td>Customer Order #</td>
             <td>{{data["client_order_number"]}}</td>
           </tr>
           <tr>
-            <td colspan="2">
-              {% if data["client_contact_name"] %}
-                Contact Name: {{(data["client_contact_name"])}}
-                <br/>
-              {% endif %}
-              {% if data["client"]["Phone"] %}
-                Phone: {{(data["client"]["Phone"])}}
-                <br/>
-              {% endif %}
-              {% if data["client"]["Head_office_Details"] %}
-                Address: {{data["client"]["Head_office_Details"] or ""}}
-              {% endif %}
-            </td>
+            <td colspan="2"></td>
             <td>Sales Cfm #</td>
             <td>{{data["sales_order_details"]["Name"]}}
             </td>
