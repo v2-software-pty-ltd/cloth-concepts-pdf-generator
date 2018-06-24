@@ -268,7 +268,9 @@
             <th>Colour</th>
             <th>Quantity<br>(m)</th>
             <th>Unit Price<br>({{data["purchase_order_details"]["Currency"]}} / m)</th>
+            {% if data["has_surcharges"] %}
             <th>Surcharge ({{data["purchase_order_details"]["Currency"]}})</th>
+            {% endif %}
             <th>Total<br>({{data["purchase_order_details"]["Currency"]}})</th>
           </tr>
         </thead>
@@ -287,7 +289,9 @@
             <td>{{line_item["Colour"] or line_item["Product"]["Colour"] or ''}}</td>
             <td>{{line_item["Quantity_m"] or '0'}}m</td>
             <td>${{line_item["Cost_per_meter"] or '0.0'}}</td>
+            {% if data["has_surcharges"] %}
             <td>${{line_item["Supplier_Surcharge"] or '0.0'}}</td>
+            {% endif %}
             <td>${{line_item["Line_Item_Total"] or '0.0'}}</td>
           </tr>
           {% endfor %}

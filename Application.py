@@ -46,6 +46,7 @@ def sales_confirmation_html():
         return line_item
 
     sales_order_details["Line_Items"] = map(process_line_item, sales_order_details["Line_Items"])
+    has_surcharges = any(line_item["Surcharge"] != "" and line_item["Surcharge"] != None for line_item in sales_order_details["Line_Items"])
 
     strike_off_lab_dips = output_dict["strike_off_lab_dips"]
     strike_off = None
@@ -106,7 +107,8 @@ def sales_confirmation_html():
         "purchase_order_data": output_dict["purchase_order_record"],
         "strike_off": strike_off,
         "lab_dip": lab_dip,
-        "client_order_number": client_order_number
+        "client_order_number": client_order_number,
+        "has_surcharges": has_surcharges
     }
 
 
@@ -179,6 +181,7 @@ def purchase_order_html():
         return line_item
 
     purchase_order_details["PO_Line_Items"] = map(process_line_item, purchase_order_details["PO_Line_Items"])
+    has_surcharges = any(line_item["Surcharge"] != "" and line_item["Surcharge"] != None for line_item in sales_order_details["Line_Items"])
 
     strike_off_lab_dips = output_dict["strike_off_lab_dips"]
     strike_off = None
@@ -233,7 +236,8 @@ def purchase_order_html():
         "bulk_shipment_date": bulk_shipment_date,
         "purchase_order_details": purchase_order_details,
         "strike_off": strike_off,
-        "lab_dip": lab_dip
+        "lab_dip": lab_dip,
+        "has_surcharges": has_surcharges
     }
 
 
