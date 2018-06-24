@@ -88,10 +88,6 @@
       -webkit-print-color-adjust: exact;
     }
 
-    .info-heading {
-      margin: 10px;
-    }
-
     .info-heading h1.text-align-center.all-caps {
       background: #242424;
       -webkit-print-color-adjust: exact;
@@ -201,6 +197,10 @@
     .no-margin {
       margin: 0;
     }
+
+    .margin\(10px_0\) {
+      margin: 10px 0;
+    }
   </style>
   <main id="wrapper">
     <section id="header">
@@ -220,7 +220,7 @@
     </section>
     <section id="confirmation-details">
       <div class="info-heading">
-        <h1 class="text-align-center all-caps">
+        <h1 class="text-align-center all-caps margin(10px_0)">
           {% if data["supplier"]["Supplier_Type"] == "Agency Supplier" %}Agency {% endif %}Purchase Order {{data["purchase_order_details"]["Name"]}}
         </h1>
       </div>
@@ -258,9 +258,7 @@
           </tr>
         </table>
       </div>
-      <br />
-      <br />
-      <table style="width: 100%;" class="table-with-border table-with-border1">
+      <table style="margin-top: 10px; width: 100%;" class="table-with-border table-with-border1">
         <thead>
           <tr>
             <th>Item #</th>
@@ -373,7 +371,6 @@
           </tr>
         </tbody>
       </table>
-      <br/>
       <br/>
       <div id="terms">
         {% for term in data["purchase_order_details"]["Terms_and_Conditions"].split("\n") %}
