@@ -220,7 +220,7 @@
     <section id="confirmation-details">
       <div class="info-heading">
         <h1 class="text-align-center all-caps">
-          Sales Confirmation #{{data["sales_order_details"]["Name"]}}
+          Sales Confirmation {{data["sales_order_details"]["Name"]}}
         </h1>
       </div>
       <div class="customer-table">
@@ -272,11 +272,11 @@
             <th>Description</th>
             <th>Colour & Name of Fabric</th>
             <th>Quantity<br>(m)</th>
-            <th>Unit Price<br>({data["sales_order_details"]["Currency_for_Sales_Order"]} / m)</th>
+            <th>Unit Price<br>({{data["sales_order_details"]["Currency_for_Sales_Order"]}} / m)</th>
             {% if data["has_surcharges"] %}
-              <th>Surcharge ({data["sales_order_details"]["Currency_for_Sales_Order"]})</th>
+              <th>Surcharge ({{data["sales_order_details"]["Currency_for_Sales_Order"]}})</th>
             {% endif %}
-            <th>Total<br>({data["sales_order_details"]["Currency_for_Sales_Order"]})</th>
+            <th>Total<br>({{data["sales_order_details"]["Currency_for_Sales_Order"]}})</th>
           </tr>
         </thead>
         <tbody>
