@@ -181,7 +181,7 @@ def purchase_order_html():
         return line_item
 
     purchase_order_details["PO_Line_Items"] = map(process_line_item, purchase_order_details["PO_Line_Items"])
-    has_surcharges = any(line_item["Surcharge"] != "" and line_item["Surcharge"] != None and line_item["Surcharge"] > 0 for line_item in purchase_order_details["PO_Line_Items"])
+    has_surcharges = any(line_item["Supplier_Surcharge"] != "" and line_item["Supplier_Surcharge"] != None and line_item["Supplier_Surcharge"] > 0 for line_item in purchase_order_details["PO_Line_Items"])
 
     strike_off_lab_dips = output_dict["strike_off_lab_dips"]
     strike_off = None
