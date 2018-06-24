@@ -108,7 +108,8 @@ def sales_confirmation_html():
         "strike_off": strike_off,
         "lab_dip": lab_dip,
         "client_order_number": client_order_number,
-        "has_surcharges": has_surcharges
+        "has_surcharges": has_surcharges,
+        "client": output_dict["client"]
     }
 
 
