@@ -221,10 +221,9 @@
     <section id="confirmation-details">
       <div class="info-heading">
         <h1 class="text-align-center all-caps">
-          Purchase Order
+          {% if data["supplier"]["Supplier_Type"] == "Agency Supplier" %}Agency {% endif %}Purchase Order {{data["purchase_order_details"]["Name"]}}
         </h1>
       </div>
-      <br/>
       <div class="customer-table">
         <table style="width: 100%;">
           <tr>
@@ -240,7 +239,10 @@
             </td>
           </tr>
           <tr>
-            <td colspan="1">
+            <td colspan="2">
+              {% if data["supplier"]["Contact_Name"] %}
+                Contact Name: {{(data["supplier"]["Contact_Name"])}} <br/>
+              {% endif %}
               {% if data["supplier"]["Phone"] %}
                 Phone: {{(data["supplier"]["Phone"])}} <br/>
               {% endif %}
@@ -252,8 +254,7 @@
               {% endif %}
             </td>
             <td>Order #</td>
-            <td>{{data["purchase_order_details"]["Name"]}}
-            </td>
+            <td>{{data["purchase_order_details"]["Name"]}}</td>
           </tr>
         </table>
       </div>
