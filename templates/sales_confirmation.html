@@ -220,7 +220,7 @@
     <section id="confirmation-details">
       <div class="info-heading">
         <h1 class="text-align-center all-caps">
-          Sales Confirmation {{data["sales_order_details"]["Name"]}}
+          Sales Confirmation #{{data["sales_order_details"]["Sales_Order_Number"]}}
         </h1>
       </div>
       <div class="customer-table">
@@ -348,11 +348,7 @@
         <tbody>
           <tr>
             <td>
-              {{ (data["sales_order_details"]["Street_Address_Line_1"] + "<br/>" if data["sales_order_details"]["Street_Address_Line_1"] else "")|safe }}
-              {{ (data["sales_order_details"]["Street_Address_Line_2"] + "<br/>" if data["sales_order_details"]["Street_Address_Line_2"] else "")|safe }}
-              {{ (data["sales_order_details"]["City"] + "<br/>" if data["sales_order_details"]["City"] else "")|safe }}
-              {{ (data["sales_order_details"]["State"] + "<br/>" if data["sales_order_details"]["State"] else "")|safe }}
-              {{ (data["sales_order_details"]["Postcode"] + "<br/>" if data["sales_order_details"]["Postcode"] else "")|safe }}
+              {{ ("Delivery address: " + data["sales_order_details"]["Delivery_Address_and_Instructions"] + "<br/>" if data["sales_order_details"]["Delivery_Address_and_Instructions"] else "")|safe }}
               {{ ("Delivery method: " + data["sales_order_details"]["Delivery_Method_for_bulk_shipment"] + "<br/>" if data["sales_order_details"]["Delivery_Method_for_bulk_shipment"] else "")|safe }}
               {{ ("Delivery instructions: " + data["sales_order_details"]["Delivery_Instructions"] + "<br/>" if data["sales_order_details"]["Delivery_Instructions"] else "")|safe }}
               {{ ("Shipping Sample: " + data["sales_order_details"]["Shipping_Sample_m"] + "<br/>" if data["sales_order_details"]["Shipping_Sample_m"] else "")|safe }}
