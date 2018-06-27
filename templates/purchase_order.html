@@ -239,7 +239,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2">
+            <td colspan="4">
               {% if data["supplier"]["Contact_Name"] %}
                 Contact Name: {{(data["supplier"]["Contact_Name"])}} <br/>
               {% endif %}
@@ -253,8 +253,6 @@
                        {{data["supplier"]["Country"] or ""}}</br>
               {% endif %}
             </td>
-            <td>Order #</td>
-            <td>{{data["purchase_order_details"]["Name"]}}</td>
           </tr>
         </table>
       </div>

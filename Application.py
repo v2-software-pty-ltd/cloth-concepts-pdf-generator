@@ -26,7 +26,10 @@ def sales_confirmation_html():
     result_dict = json.loads(results.text)
 
     if ("details" not in result_dict):
-        print("Problem with request: " + result_dict)
+        print("Problem with request: " + results.text)
+
+    if ("output" not in result_dict["details"]):
+        print("Problem with request: " + results.text)
     output_json = result_dict['details']['output']
     output_dict = json.loads(output_json)
     sales_order_details = output_dict["sales_order_data"]
