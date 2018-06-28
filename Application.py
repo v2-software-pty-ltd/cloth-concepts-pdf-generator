@@ -96,6 +96,10 @@ def sales_confirmation_html():
     created_date = parser.parse(sales_order_details["Date"] or sales_order_details["Created_Time"])
     sales_order_details["Date"] = created_date.strftime("%d-%B-%Y")
 
+    if "Yes" in sales_order_details["Tax_Rate_Set_Correctly"]:
+        sales_order_details["GST"] = sales_order_details["Grand_Total_ex_GST"] * 0.1
+        sales_order_details["Grand_Total_inc_GST"] = sales_order_details["Grand_Total_ex_GST"] * 1.1
+
     data = {
         "client_contact_name": client_contact_name,
         "client_name": client_name,
@@ -146,7 +150,6 @@ def sales_confirmation():
         sales_order_id = "2999925000000387032"
     response.headers['Content-Disposition'] = "inline; filename=sales-order-confirmation-" + sales_order_id + ".pdf"
     return response, 200
-
 
 @app.route('/purchase-order-html')
 def purchase_order_html():
