@@ -277,6 +277,73 @@ def purchase_order():
     response.headers['Content-Disposition'] = "inline; filename=purchase-order-" + purchase_order_id + ".pdf"
     return response, 200
 
+
+@app.route('/strike-off-lab-dip-html')
+def strike_off_lab_dip_html():
+    strike_off_lab_dip_id = request.args.get('strike_off_lab_dip_id')
+    if strike_off_lab_dip_id is None:
+        strike_off_lab_dip_id = "2999925000000387032"
+
+    argument_json = json.dumps({'strike_off_lab_dip_id': strike_off_lab_dip_id})
+    payload = {'arguments': argument_json}
+
+    results = requests.post(
+        "https://crm.zoho.com/crm/v2/functions/data_for_strike_off_lab_dip/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b",
+        data=payload)
+    result_dict = json.loads(results.text)
+
+    if ("details" not in result_dict):
+        print("Problem with request: " + results.text)
+
+    if ("output" not in result_dict["details"]):
+        print("Problem with request: " + results.text)
+    output_json = result_dict['details']['output']
+    output_dict = json.loads(output_json)
+
+    strike_off_lab_dip = output_dict["strike_off_lab_dip"]
+
+    sent_date = parser.parse(strike_off_lab_dip["Date_Sent"] or strike_off_lab_dip["Created_Time"])
+    strike_off_lab_dip["Date_Sent"] = sent_date.strftime("%d-%B-%Y")
+
+    data = {
+        "strike_off_lab_dip": strike_off_lab_dip,
+        "supplier": output_dict["supplier"]
+    }
+
+    if strike_off_lab_dip["Strike_Off_or_Lab_Dip"] == "Strike-Off":
+        html = render_template('./strike_off.html', title='Strike Off', data=data)
+    elif strike_off_lab_dip["Strike_Off_or_Lab_Dip"] == "Lab-Dip":
+        html = render_template('./lab_dip.html', title='Strike Off', data=data)
+    return html
+
+@app.route('/strike-off-lab-dip')
+def strike_off_lab_dip():
+    html = strike_off_lab_dip_html()
+    options = {
+        'page-size': 'A4',
+        'dpi': 240,
+        'margin-top': '0.15in',
+        'margin-right': '0.15in',
+        'margin-bottom': '0.15in',
+        'margin-left': '0.15in',
+        'encoding': "UTF-8",
+        'page-width': '20in',
+        'no-outline': None
+    }
+
+    if (platform.system() == 'Darwin'):
+        config = pdfkit.configuration()
+    else:
+        config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+    pdf = pdfkit.from_string(html, False, options=options, configuration=config)
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    strike_off_lab_dip_id = request.args.get('strike_off_lab_dip_id')
+    if strike_off_lab_dip_id is None:
+        strike_off_lab_dip_id = "2999925000000387032"
+    response.headers['Content-Disposition'] = "inline; filename=strike-off-lab-dip-" + strike_off_lab_dip_id + ".pdf"
+    return response, 200
+
 port = int(os.getenv('PORT', 8084))
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
