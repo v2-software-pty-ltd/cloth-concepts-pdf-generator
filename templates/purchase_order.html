@@ -297,17 +297,21 @@
           {% endfor %}
         </tbody>
         <tfoot>
-          {% if data["purchase_order_details"]["Special_Instructions"] %}
+          {% if data["purchase_order_details"]["Special_Instructions"] or data["purchase_order_details"]["Shipping_Sample_Instructions"] %}
           <tr>
             <td colspan="7" style="text-align: left;">
-              <b>Special Instructions:</b>
-              <br/>
-              {{data["purchase_order_details"]["Special_Instructions"] or ""}}
-              <br/>
-              <br/>
-              <b>Shipping Sample Instructions:</b>
-              <br/>
-              {{data["purchase_order_details"]["Shipping_Sample_Instructions"] or ""}}
+              {% if data["purchase_order_details"]["Special_Instructions"] %}
+                <b>Special Instructions:</b>
+                <br/>
+                {{data["purchase_order_details"]["Special_Instructions"] or ""}}
+                <br/>
+                <br/>
+              {% endif %}
+              {% if data["purchase_order_details"]["Shipping_Sample_Instructions"] %}
+                <b>Shipping Sample Instructions:</b>
+                <br/>
+                {{data["purchase_order_details"]["Shipping_Sample_Instructions"] or ""}}
+              {% endif %}
             </td>
           </tr>
           {% endif %}
