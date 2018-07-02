@@ -107,8 +107,8 @@
     }
 
     th {
-      background: #000;
-      color: #fff;
+      background: #fff;
+      color: #000;
       -webkit-print-color-adjust: exact;
       padding: 1px;
       font-family: 'Montserrat', sans-serif;
@@ -292,6 +292,7 @@
           {% endfor %}
         </tbody>
         <tfoot>
+          {% if data["purchase_order_details"]["Special_Instructions"] %}
           <tr>
             <td colspan="7" style="text-align: left;">
               <b>Special Instructions:</b>
@@ -304,6 +305,7 @@
               {{data["purchase_order_details"]["Shipping_Sample_Instructions"] or ""}}
             </td>
           </tr>
+          {% endif %}
           <table style="width: 30%;" class="table-total">
             <tr>
               <td style="border: none; background: initial;"></td>
