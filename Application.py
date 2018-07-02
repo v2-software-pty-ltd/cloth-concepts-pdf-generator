@@ -291,6 +291,7 @@ def strike_off_lab_dip_html():
         "https://crm.zoho.com/crm/v2/functions/data_for_strike_off_lab_dip/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b",
         data=payload)
     result_dict = json.loads(results.text)
+    print (payload)
 
     if ("details" not in result_dict):
         print("Problem with request: " + results.text)
