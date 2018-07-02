@@ -21,7 +21,7 @@ def sales_confirmation_html():
     payload = {'arguments': argument_json}
 
     results = requests.post(
-        "https://crm.zoho.com/crm/v2/functions/data_for_sales_confirmation/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b",
+        "https://crm.zoho.com/crm/v2/functions/data_for_sales_confirmation/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b&arguments=" + argument_json,
         data=payload)
     result_dict = json.loads(results.text)
 
@@ -161,8 +161,9 @@ def purchase_order_html():
     payload = {'arguments': argument_json}
 
     results = requests.post(
-        "https://crm.zoho.com/crm/v2/functions/data_for_purchase_order/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b",
+        "https://crm.zoho.com/crm/v2/functions/data_for_purchase_order/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b&arguments=" + argument_json,
         data=payload)
+
     result_dict = json.loads(results.text)
     output_json = result_dict['details']['output']
     output_dict = json.loads(output_json)
@@ -284,14 +285,13 @@ def strike_off_lab_dip_html():
     if strike_off_lab_dip_id is None:
         strike_off_lab_dip_id = "2999925000000387032"
 
-    argument_json = json.dumps({'strike_off_lab_dip_id': strike_off_lab_dip_id})
+    argument_json = json.dumps({'record_id': strike_off_lab_dip_id})
     payload = {'arguments': argument_json}
 
     results = requests.post(
-        "https://crm.zoho.com/crm/v2/functions/data_for_strike_off_lab_dip/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b",
+        "https://crm.zoho.com/crm/v2/functions/data_for_strike_off_lab_dip/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b&arguments=" + argument_json,
         data=payload)
     result_dict = json.loads(results.text)
-    print (payload)
 
     if ("details" not in result_dict):
         print("Problem with request: " + results.text)
