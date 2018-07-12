@@ -1,33 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>PDF TO HTML-2 </title>
+  <title>Lab_Dip_Request</title>
   <style>
-    @media print {
-      @page {
-        size: A4;
-        margin: 4mm 15mm 4mm 15mm;
-      }
-    }
+   
+     @page {
+	  size: letter;  
+       }
 
     body {
-      font-family: monospace;
+       font-family: monospace;
       margin: 0;
-      font-size: 18px;
-      letter-spacing: 2px;
-    }
+      font-size: 15px;
+      letter-spacing: 1px;	   
+        }
 
-    .container {
-      padding: 10px 30px;
-      margin: 0 auto;
-
-    }
-
-    .inv-title {
+     .inv-title {
       text-align: center;
     }
 
@@ -38,9 +29,9 @@
     .inv-title h1 {
       text-align: center;
       font-weight: 100;
-      font-size: 36px;
-      font-family: unset;
-      letter-spacing: 3px;
+      font-size: 30px;
+       font-family: monospace;
+      letter-spacing: 2px;
       margin-top: 5px;
     }
 
@@ -49,88 +40,52 @@
     }
 
     .line-cls {
-      height: 2px;
-      width: 90%;
+      height: 1px;
+      width: 94%;
       margin: 0 auto;
       text-align: center;
       background: #777777;
       margin-top: 10px;
       margin-bottom: 15px;
     }
-
-    .left-bold {
-      font-family: monospace;
-      font-weight: bold;
-    }
-
-    /* Body */
-
-    .inv-body {
-      margin-bottom: 20px;
-    }
-
-    .inv-body table {
-      width: 100%;
-
-    }
-
-    .inv-body table td {
-      padding: 8px;
-    }
-
-    .footer-table td {
-      padding: 0px;
-    }
-
-    .box-design {
+  .box-design {
       padding: 20px;
       min-height: 180px;
       border: 1px solid #000;
     }
 
-    /* Footer */
-
-    .inv-footer {
-      clear: both;
-      overflow: auto;
-      font-size: 14px;
-    }
-
-    .inv-footer table {
-      text-align: center;
-    }
-  </style>
+      </style>
 </head>
 
 <body>
-  <div class="container">
+ <div style="width:80%; margin:0 auto; padding-top:50px; padding-bottom:50px;">
     <div class="inv-title">
       <img src="https://static.wixstatic.com/media/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png/v1/crop/x_91,y_87,w_1409,h_515/fill/w_618,h_226,al_c,usm_0.66_1.00_0.01/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png" class="inv-logo">
       <h1 class="heading-title">LAB DIP REQUEST</h1>
     </div>
     <div class="line-cls"> </div>
-    <div class="inv-body">
-      <table>
+    <div class="inv-body" style="width:100%;">
+    <table width="100%" cellpadding="8" >
         <tbody>
           <tr>
             <td>
-              <span class="left-bold">DATE SENT: {{data["strike_off_lab_dip"]["Date_Sent"]}}</span>
+            <strong style="margin-right:16px;" >DATE SENT: </strong> <span style="margin-left:15px">{{data["strike_off_lab_dip"]["Date_Sent"]}}</span>
+            </td>
+          </tr>
+        <tr>
+            <td>
+              <strong style="margin-right:10px;" >SUPPLIER: </strong><span style="margin-left:15px"> {{data["supplier"]["Name"]}}</span>
             </td>
           </tr>
           <tr>
             <td>
-              <span class="left-bold">SUPPLIER: {{data["supplier"]["Name"]}}</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span class="left-bold">ITEM #: {{data["strike_off_lab_dip"]["Products"]}}</span>
+             <strong style="margin-right:10px;" >ITEM #: </strong> <span style="margin-left:15px">{{data["strike_off_lab_dip"]["Products"]}}</span>
             </td>
           </tr>
           <tr>
             <td>
               <div class="box-design" style="margin-top: 15px;">
-                COLOUR: {{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}
+               <strong style="margin-right:10px;" > COLOUR: </strong> <span style="margin-left:15px">{{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}</span>
               </div>
             </td>
           </tr>
@@ -138,25 +93,27 @@
       </table>
     </div>
 
-    <div class="inv-footer" style="margin-left: -20px; margin-top:80px; width:80%; padding-top:20px; padding-right:15px;">
-      <table width="100%" align="center" style="font-size: 14px;">
+    <div class="inv-footer" style="width:100%; padding-top:20px; padding-right:15px; margin-top:50px;">	
+      <table width="85%" cellpadding="8">
         <tr>
-          <td style="padding: 5px 20px 10px 5px;">
-            <strong>PLEASE ADVISE ASAP S/OFF SEND OUT DATE WHEN RECEIVING THIS PLEASE E-MAIL KATE AT design@clothconcepts.com</strong>
+          <td style="text-align:center; font-weight:bold; font-size: 12px;">
+            PLEASE ADVISE ASAP S/OFF SEND OUT DATE WHEN RECEIVING THIS<br> PLEASE E-MAIL KATE AT design@clothconcepts.com
           </td>
-        </tr>
-        <tr>
+        </tr>      
+      </table>
+	   <table width="92%" cellpadding="8">
+         <tr>
           <td style="font-size: 12px;">請收到文件後，立即告知 KATE（design@clothconcepts.com）最快印花寄出日期謝謝！</td>
         </tr>
       </table>
       <div class="line-cls"></div>
-      <table class="footer-table" width="100%" align="center" style="color: #86888a; font-size: 15px;">
+      <table class="footer-table" width="98%"  style="color: #86888a; font-size: 15px;">
         <tr>
-          <td colspan="2">Unit 4/538 Gardeners Road, Alexandria, 2015, NSW, AUSTRALIA</td>
+          <td colspan="2" >Unit 4/538 Gardeners Road, Alexandria, 2015, NSW, AUSTRALIA</td>
         </tr>
         <tr>
           <td>Phone: +61 2 9669 4615</td>
-          <td>ABN: 99136665462</td>
+          <td style="text-align:right;">ABN: 99136665462</td>
         </tr>
       </table>
     </div>
