@@ -304,7 +304,10 @@ def strike_off_lab_dip_html():
     strike_off_lab_dip = output_dict["strike_off_lab_dip"]
 
     sent_date = parser.parse(strike_off_lab_dip["Date_Sent"] or strike_off_lab_dip["Created_Time"])
-    strike_off_lab_dip["Date_Sent"] = sent_date.strftime("%d-%B-%Y")
+    strike_off_lab_dip["Date_Sent"] = sent_date.strftime("%d/%B/%Y")
+
+    ex_mill_date = parser.parse(strike_off_lab_dip["Due_Date"] or strike_off_lab_dip["Created_Time"])
+    strike_off_lab_dip["Due_Date"] = ex_mill_date.strftime("%d/%B/%Y")
 
     data = {
         "strike_off_lab_dip": strike_off_lab_dip,
