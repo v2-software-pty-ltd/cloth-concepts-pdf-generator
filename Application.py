@@ -94,7 +94,7 @@ def sales_confirmation_html():
         "Client_Order_Number"] != None else ""
 
     created_date = parser.parse(sales_order_details["Date"] or sales_order_details["Created_Time"])
-    sales_order_details["Date"] = created_date.strftime("%d-%B-%Y")
+    sales_order_details["Date"] = created_date.strftime("%d-%m-%Y")
 
     if "Yes" in sales_order_details["Tax_Rate_Set_Correctly"]:
         sales_order_details["GST"] = round(sales_order_details["Grand_Total_ex_GST"] * 0.1, 2)
@@ -177,7 +177,7 @@ def purchase_order_html():
                                                                                "Client_Contact"] != None else ""
 
     created_date = parser.parse(purchase_order_details["Created_Time"])
-    purchase_order_details["Date"] = created_date.strftime("%d-%B-%Y")
+    purchase_order_details["Date"] = created_date.strftime("%d-%m-%Y")
 
     product_dict = {}
     for product in output_dict["product_data"]:
@@ -304,10 +304,10 @@ def strike_off_lab_dip_html():
     strike_off_lab_dip = output_dict["strike_off_lab_dip"]
 
     sent_date = parser.parse(strike_off_lab_dip["Date_Sent"] or strike_off_lab_dip["Created_Time"])
-    strike_off_lab_dip["Date_Sent"] = sent_date.strftime("%d/%B/%Y")
+    strike_off_lab_dip["Date_Sent"] = sent_date.strftime("%d/%m/%Y")
 
     ex_mill_date = parser.parse(strike_off_lab_dip["Due_Date"] or strike_off_lab_dip["Created_Time"])
-    strike_off_lab_dip["Due_Date"] = ex_mill_date.strftime("%d/%B/%Y")
+    strike_off_lab_dip["Due_Date"] = ex_mill_date.strftime("%d/%m/%Y")
 
     data = {
         "strike_off_lab_dip": strike_off_lab_dip,
