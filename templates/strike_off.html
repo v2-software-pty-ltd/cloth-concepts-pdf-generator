@@ -129,7 +129,11 @@
           </tr>
           <tr>
             <td>
-             <strong style="margin-right:15px;">COMMENTS:</strong> <span style="margin-left:12px">{{data["strike_off_lab_dip"]["Comments_to_mill"] or ""}}</span>
+             <strong style="margin-right:15px;">COMMENTS:</strong>
+             <span style="margin-left:12px">
+               {{data["strike_off_lab_dip"]["Comments_to_mill"] or ""}}
+               {{data["strike_off_lab_dip"]["Print_Copyright"] or ""}}
+              </span>
             </td>
           </tr>
           <tr>
