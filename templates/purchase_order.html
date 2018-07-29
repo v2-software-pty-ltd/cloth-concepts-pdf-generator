@@ -243,6 +243,7 @@
               {{data["purchase_order_details"]["Date"]}}
             </td>
           </tr>
+          {% if data["supplier"]["Head_Office"] or data["supplier"]["Contact_Name"] or data["supplier"]["Phone"] %}
           <tr>
             <td colspan="4">
               {% if data["supplier"]["Contact_Name"] %}
@@ -251,14 +252,12 @@
               {% if data["supplier"]["Phone"] %}
                 Phone: {{(data["supplier"]["Phone"])}} <br/>
               {% endif %}
-              {% if data["supplier"]["Street"] %}
-                Address: {{data["supplier"]["Street"] or ""}}<br/>
-                       {{data["supplier"]["City"] or ""}}</br>
-                       {{data["supplier"]["State"] or ""}}</br>
-                       {{data["supplier"]["Country"] or ""}}</br>
+              {% if data["supplier"]["Head_Office"] %}
+                Address: {{data["supplier"]["Head_Office"] or ""}}<br/>
               {% endif %}
             </td>
           </tr>
+          {% endif %}
         </table>
       </div>
       <table style="margin-top: 10px; width: 100%;" class="table-with-border table-with-border1">
@@ -283,6 +282,7 @@
               {{ (line_item["Product"]["Mill_Item_Number"] + "<br/>" if line_item["Product"]["Mill_Item_Number"] else "")|safe }}
               {{ ("COMPOSITION: " + line_item["Product"]["Fabric_Composition"] + "<br/>" if line_item["Product"]["Fabric_Composition"] else "")|safe }}
               {{ ("WIDTH: " + line_item["Product"]["Width"] + "<br/>" if line_item["Product"]["Width"] else "")|safe }}
+              {{ ("LENGTH: " + line_item["Product"]["Piece_Length"] + "<br/>" if line_item["Product"]["Piece_Length"] else "")|safe }}
               {{ ("WEIGHT: " + line_item["Product"]["Weight"] + "<br/>" if line_item["Product"]["Weight"] else "")|safe }}
               {{ (line_item["Product"]["Additional_Information"] if line_item["Product"]["Additional_Information"] else "")|safe }}
             </td>
