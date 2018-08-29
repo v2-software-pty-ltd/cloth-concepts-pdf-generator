@@ -288,11 +288,11 @@
             </td>
             <td>{{line_item["Colour"] or line_item["Product"]["Colour"] or ''}}</td>
             <td>{{line_item["Quantity_m"] or '0'}}m</td>
-            <td>${{line_item["Cost_per_meter"] or '0.0'}}</td>
+            <td>{{line_item["Cost_per_meter"] or '0.0'}} {{data["purchase_order_details"]["Currency"]}}</td>
             {% if data["has_surcharges"] %}
-            <td>${{line_item["Supplier_Surcharge"] or '0.0'}}</td>
+            <td>{{line_item["Supplier_Surcharge"] or '0.0'}} {{data["purchase_order_details"]["Currency"]}}</td>
             {% endif %}
-            <td>${{line_item["Line_Item_Total"] or '0.0'}}</td>
+            <td>{{line_item["Line_Item_Total"] or '0.0'}} {{data["purchase_order_details"]["Currency"]}}</td>
           </tr>
           {% endfor %}
         </tbody>
