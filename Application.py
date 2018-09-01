@@ -285,7 +285,6 @@ def purchase_order():
     response.headers['Content-Disposition'] = "inline; filename=purchase-order-" + purchase_order_id + ".pdf"
     return response, 200
 
-
 @app.route('/strike-off-lab-dip-html')
 def strike_off_lab_dip_html():
     strike_off_lab_dip_id = request.args.get('strike_off_lab_dip_id')
@@ -353,6 +352,139 @@ def strike_off_lab_dip():
     if strike_off_lab_dip_id is None:
         strike_off_lab_dip_id = "2999925000000387032"
     response.headers['Content-Disposition'] = "inline; filename=strike-off-lab-dip-" + strike_off_lab_dip_id + ".pdf"
+    return response, 200
+
+@app.route('/sampling-order-html')
+def sampling_order_html():
+    sampling_order_id = request.args.get('sampling_order_id')
+
+    argument_json = json.dumps({'record_id': sampling_order_id})
+    payload = {'arguments': argument_json}
+
+    results = requests.post(
+        "https://crm.zoho.com/crm/v2/functions/data_for_sampling_order/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b&arguments=" + argument_json,
+        data=payload)
+    result_dict = json.loads(results.text)
+
+    if ("details" not in result_dict):
+        print("Problem with request: " + results.text)
+
+    if ("output" not in result_dict["details"]):
+        print("Problem with request: " + results.text)
+    output_json = result_dict['details']['output']
+    output_dict = json.loads(output_json)
+
+    sampling_order = output_dict["sampling_order"]
+
+    order_date = parser.parse(sampling_order["Date_Ordered"] or sampling_order["Created_Time"])
+    sampling_order["Date_Ordered"] = order_date.strftime("%d/%m/%Y")
+
+    received_date = parser.parse(sampling_order["Date_Received"] or sampling_order["Created_Time"])
+    sampling_order["Date_Received"] = received_date.strftime("%d/%m/%Y")
+
+    data = {
+        "sampling_order": sampling_order,
+        "supplier": output_dict["supplier"]
+    }
+    return render_template('./Sampling_Order_Form.html', title='Sampling Order', data=data)
+
+@app.route('/sampling-order')
+def sampling_order():
+    html = sampling_order_html()
+    options = {
+        'page-size': 'A4',
+        'dpi': 240,
+        'margin-top': '0.15in',
+        'margin-right': '0.15in',
+        'margin-bottom': '0.15in',
+        'margin-left': '0.15in',
+        'encoding': "UTF-8",
+        'page-width': '20in',
+        'no-outline': None
+    }
+
+    if (platform.system() == 'Darwin'):
+        config = pdfkit.configuration()
+    else:
+        config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+    pdf = pdfkit.from_string(html, False, options=options, configuration=config)
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    sampling_order_id = request.args.get('sampling_order_id')
+    if sampling_order_id is None:
+        sampling_order_id = "2999925000000387032"
+    response.headers['Content-Disposition'] = "inline; filename=sampling-order-" + sampling_order_id + ".pdf"
+    return response, 200
+
+@app.route('/agency-commission-html')
+def agency_commission_html():
+    supplier_id = request.args.get('supplier_id')
+
+    argument_json = json.dumps({'supplier_id': supplier_id})
+    payload = {'arguments': argument_json}
+
+    results = requests.post(
+        "https://crm.zoho.com/crm/v2/functions/data_for_agency_commission_report/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b&arguments=" + argument_json,
+        data=payload)
+    result_dict = json.loads(results.text)
+
+    if ("details" not in result_dict):
+        print("Problem with request: " + results.text)
+
+    if ("output" not in result_dict["details"]):
+        print("Problem with request: " + results.text)
+    output_json = result_dict['details']['output']
+    output_dict = json.loads(output_json)
+
+    purchase_orders_for_supplier = output_dict["purchase_orders_for_supplier"]
+    totals_data_per_currency = dict()
+    for purchase_order in purchase_orders_for_supplier:
+      currency = purchase_order["Currency"]
+      print("currency" + currency)
+      commission = purchase_order["Commission_Due"]
+      total_data_for_this_currency = totals_data_per_currency[currency] if currency in totals_data_per_currency else dict()
+      current_commission_total = total_data_for_this_currency['commission'] if 'commission' in total_data_for_this_currency else 0
+      total_data_for_this_currency['commission'] = current_commission_total + commission
+
+      grand_total = purchase_order["Grand_Total_inc_GST"]
+      current_order_total = total_data_for_this_currency['order_total'] if 'order_total' in total_data_for_this_currency else 0
+      total_data_for_this_currency['order_total'] = current_order_total + grand_total
+      totals_data_per_currency[currency] = total_data_for_this_currency
+
+    print(totals_data_per_currency)
+    data = {
+        "purchase_orders_for_supplier": purchase_orders_for_supplier,
+        "totals_data_per_currency": totals_data_per_currency,
+        "supplier": output_dict["supplier"]
+    }
+    return render_template('./Agency_Commission.html', title='Sampling Order', data=data)
+
+@app.route('/agency-commission')
+def agency_commission():
+    html = agency_commission_html()
+    options = {
+        'page-size': 'A4',
+        'dpi': 240,
+        'margin-top': '0.15in',
+        'margin-right': '0.15in',
+        'margin-bottom': '0.15in',
+        'margin-left': '0.15in',
+        'encoding': "UTF-8",
+        'page-width': '20in',
+        'no-outline': None
+    }
+
+    if (platform.system() == 'Darwin'):
+        config = pdfkit.configuration()
+    else:
+        config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+    pdf = pdfkit.from_string(html, False, options=options, configuration=config)
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    supplier_id = request.args.get('supplier_id')
+    if supplier_id is None:
+        supplier_id = "2999925000000387032"
+    response.headers['Content-Disposition'] = "inline; filename=agency-commission-" + supplier_id + ".pdf"
     return response, 200
 
 port = int(os.getenv('PORT', 8084))
