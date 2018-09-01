@@ -246,7 +246,7 @@
             <td colspan="3">
               {% if data["client_contact_name"] %} Contact Name: {{(data["client_contact_name"])}}
               <br/> {% endif %} {% if data["client"]["Phone"] %} Phone: {{(data["client"]["Phone"])}}
-              <br/> {% endif %} {% if data["client"]["Head_office_Details"] %} Address: {{data["client"]["Head_office_Details"].replace("\n", "<br/>") or "" | safe}}
+              <br/> {% endif %} {% if data["client"]["Head_office_Details"] %} Address: {{(data["client"]["Head_office_Details"].replace("\n", "<br/>") or "")|safe}}
               {% endif %}
             </td>
             <td>Customer Order #</td>
