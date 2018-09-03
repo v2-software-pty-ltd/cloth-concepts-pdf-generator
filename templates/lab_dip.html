@@ -49,23 +49,27 @@
       margin-bottom: 15px;
     }
   .box-design {
-      padding: 20px;
-      min-height: 180px;
+      padding: 15px;
+      min-height: 100px;
+	  max-width: 100px;
       border: 1px solid #000;
+	  font-size:13px;
+	  text-align: center;	 
+	      display: inline-block;
     }
 
       </style>
 </head>
 
 <body>
- <div style="width:80%; margin:0 auto; padding-top:50px; padding-bottom:50px;">
+ <div style="width:80%; margin:0 auto; padding-top:50px; padding-bottom:10px;">
     <div class="inv-title">
       <img src="https://static.wixstatic.com/media/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png/v1/crop/x_91,y_87,w_1409,h_515/fill/w_618,h_226,al_c,usm_0.66_1.00_0.01/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png" class="inv-logo">
       <h1 class="heading-title">LAB DIP REQUEST</h1>
     </div>
     <div class="line-cls"> </div>
     <div class="inv-body" style="width:100%;">
-    <table width="100%" cellpadding="8" >
+    <table width="100%" cellpadding="8" style="text-align:center" >
         <tbody>
           <tr>
             <td>
@@ -85,7 +89,24 @@
           <tr>
             <td>
               <div class="box-design" style="margin-top: 15px;">
-               <strong style="margin-right:10px;" > COLOUR: </strong> <span style="margin-left:15px">{{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}</span>
+               <strong style="margin-right:10px;" > COLOUR: </strong> 
+			   <p >{{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}</p>
+              </div>
+            </td>
+          </tr>
+		     <tr>
+            <td>
+              <div class="box-design" style="margin-top: 15px;">
+               <strong style="margin-right:10px;" > COLOUR: </strong>
+			   <p >{{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}</span>
+              </div>
+            </td>
+          </tr>
+		     <tr>
+            <td>
+              <div class="box-design" style="margin-top: 15px;">
+               <strong style="margin-right:10px;" > COLOUR: </strong><br>
+			   <p>{{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}</p>
               </div>
             </td>
           </tr>
@@ -93,7 +114,7 @@
       </table>
     </div>
 
-    <div class="inv-footer" style="width:100%; padding-top:20px; padding-right:15px; margin-top:50px;">
+    <div class="inv-footer" style="width:100%; padding-top:10px; padding-right:15px; margin-top:10px;">
       <table width="85%" cellpadding="8">
         <tr>
           <td style="text-align:center; font-weight:bold; font-size: 12px;">
