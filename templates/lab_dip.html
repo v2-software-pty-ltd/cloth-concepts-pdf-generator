@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Lab_Dip_Request</title>
   <style>
-
-     @page {
-	  size: letter;
-       }
+    @page {
+      size: letter;
+    }
 
     body {
-       font-family: monospace;
+      font-family: monospace;
       margin: 0;
       font-size: 15px;
       letter-spacing: 1px;
-        }
+    }
 
-     .inv-title {
+    .inv-title {
       text-align: center;
     }
 
@@ -30,7 +30,7 @@
       text-align: center;
       font-weight: 100;
       font-size: 30px;
-       font-family: monospace;
+      font-family: monospace;
       letter-spacing: 2px;
       margin-top: 5px;
     }
@@ -48,65 +48,76 @@
       margin-top: 10px;
       margin-bottom: 15px;
     }
-  .box-design {
+
+    .box-design {
       padding: 15px;
       min-height: 100px;
-	  max-width: 100px;
+      max-width: 100px;
       border: 1px solid #000;
-	  font-size:13px;
-	  text-align: center;	 
-	      display: inline-block;
+      font-size: 13px;
+      text-align: center;
+      display: inline-block;
     }
-
-      </style>
+  </style>
 </head>
 
 <body>
- <div style="width:80%; margin:0 auto; padding-top:50px; padding-bottom:10px;">
+  <div style="width:80%; margin:0 auto; padding-top:50px; padding-bottom:10px;">
     <div class="inv-title">
-      <img src="https://static.wixstatic.com/media/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png/v1/crop/x_91,y_87,w_1409,h_515/fill/w_618,h_226,al_c,usm_0.66_1.00_0.01/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png" class="inv-logo">
+      <img src="https://static.wixstatic.com/media/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png/v1/crop/x_91,y_87,w_1409,h_515/fill/w_618,h_226,al_c,usm_0.66_1.00_0.01/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png"
+        class="inv-logo">
       <h1 class="heading-title">LAB DIP REQUEST</h1>
     </div>
     <div class="line-cls"> </div>
     <div class="inv-body" style="width:100%;">
-    <table width="100%" cellpadding="8" style="text-align:center" >
+      <table width="100%" cellpadding="8" style="text-align:center">
         <tbody>
           <tr>
             <td>
-            <strong style="margin-right:16px;" >DATE SENT: </strong> <span style="margin-left:15px">{{data["strike_off_lab_dip"]["Date_Sent"]}}</span>
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <strong style="margin-right:10px;" >SUPPLIER: </strong><span style="margin-left:15px"> {{data["supplier"]["Vendor_Name"]}}</span>
+              <strong style="margin-right:16px;">DATE SENT:</strong>
+              <span style="margin-left:15px">{{data["strike_off_lab_dip"]["Date_Sent"]}}</span>
             </td>
           </tr>
           <tr>
             <td>
-             <strong style="margin-right:10px;" >ITEM #: </strong> <span style="margin-left:15px">{{data["strike_off_lab_dip"]["Products"]}}</span>
+              <strong style="margin-right:10px;">SUPPLIER:</strong>
+              <span style="margin-left:15px">{{data["supplier"]["Vendor_Name"]}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong style="margin-right:10px;">ITEM #:</strong>
+              <span style="margin-left:15px">{{data["strike_off_lab_dip"]["Products"]}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong style="margin-right:10px;">BASE CLOTH:</strong>
+              <span style="margin-left:15px">{{data["strike_off_lab_dip"]["Base_Cloth"]}}</span>
             </td>
           </tr>
           <tr>
             <td>
               <div class="box-design" style="margin-top: 15px;">
-               <strong style="margin-right:10px;" > COLOUR: </strong> 
-			   <p >{{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}</p>
+                <strong style="margin-right:10px;">COLOUR:</strong>
+                <p>{{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}</p>
               </div>
             </td>
           </tr>
-		     <tr>
+          <tr>
             <td>
               <div class="box-design" style="margin-top: 15px;">
-               <strong style="margin-right:10px;" > COLOUR: </strong>
-			   <p >{{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}</span>
+                <strong style="margin-right:10px;">COLOUR:</strong>
+                <p></p>
               </div>
             </td>
           </tr>
-		     <tr>
+          <tr>
             <td>
               <div class="box-design" style="margin-top: 15px;">
-               <strong style="margin-right:10px;" > COLOUR: </strong><br>
-			   <p>{{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}</p>
+                <strong style="margin-right:10px;">COLOUR:</strong>
+                <br>
+                <p></p>
               </div>
             </td>
           </tr>
@@ -118,19 +129,20 @@
       <table width="85%" cellpadding="8">
         <tr>
           <td style="text-align:center; font-weight:bold; font-size: 12px;">
-            PLEASE ADVISE ASAP S/OFF SEND OUT DATE WHEN RECEIVING THIS<br> PLEASE E-MAIL KATE AT design@clothconcepts.com
+            PLEASE ADVISE ASAP S/OFF SEND OUT DATE WHEN RECEIVING THIS
+            <br> PLEASE E-MAIL KATE AT design@clothconcepts.com
           </td>
         </tr>
       </table>
-	   <table width="92%" cellpadding="8">
-         <tr>
+      <table width="92%" cellpadding="8">
+        <tr>
           <td style="font-size: 12px;">請收到文件後，立即告知 KATE（design@clothconcepts.com）最快印花寄出日期謝謝！</td>
         </tr>
       </table>
       <div class="line-cls"></div>
-      <table class="footer-table" width="98%"  style="color: #86888a; font-size: 15px;">
+      <table class="footer-table" width="98%" style="color: #86888a; font-size: 15px;">
         <tr>
-          <td colspan="2" >Unit 4/538 Gardeners Road, Alexandria, 2015, NSW, AUSTRALIA</td>
+          <td colspan="2">Unit 4/538 Gardeners Road, Alexandria, 2015, NSW, AUSTRALIA</td>
         </tr>
         <tr>
           <td>Phone: +61 2 9669 4615</td>
