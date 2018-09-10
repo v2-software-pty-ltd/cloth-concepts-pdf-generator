@@ -51,11 +51,11 @@
 
     .box-design {
       padding: 15px;
-      height: 100px;
-      width: 100px;
+      height: 90px;
+      width: 90%;
       border: 1px solid #000;
       font-size: 13px;
-      text-align: center;
+      text-align: left;
       display: inline-block;
     }
   </style>
@@ -70,7 +70,7 @@
     </div>
     <div class="line-cls"> </div>
     <div class="inv-body" style="width:100%;">
-      <table width="100%" cellpadding="8" style="text-align:center">
+      <table width="100%" cellpadding="8" >
         <tbody>
           <tr>
             <td>
@@ -99,8 +99,7 @@
           <tr>
             <td>
               <div class="box-design" style="margin-top: 15px;">
-                <strong style="margin-right:10px;">COLOUR:</strong>
-                <p>{{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}</p>
+                <strong style="margin-right:10px;">COLOUR:</strong> {{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}
               </div>
             </td>
           </tr>
@@ -108,7 +107,7 @@
             <td>
               <div class="box-design" style="margin-top: 15px;">
                 <strong style="margin-right:10px;">COLOUR:</strong>
-                <p></p>
+                
               </div>
             </td>
           </tr>
@@ -116,8 +115,7 @@
             <td>
               <div class="box-design" style="margin-top: 15px;">
                 <strong style="margin-right:10px;">COLOUR:</strong>
-                <br>
-                <p></p>
+               
               </div>
             </td>
           </tr>
