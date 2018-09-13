@@ -96,29 +96,15 @@
               <span style="margin-left:15px">{{data["strike_off_lab_dip"]["Base_Cloth"]}}</span>
             </td>
           </tr>
-          <tr>
-            <td>
-              <div class="box-design" style="margin-top: 15px;">
-                <strong style="margin-right:10px;">COLOUR:</strong> {{data["strike_off_lab_dip"]["Pantone_Colour_s"]}}
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="box-design" style="margin-top: 15px;">
-                <strong style="margin-right:10px;">COLOUR:</strong>
-                
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="box-design" style="margin-top: 15px;">
-                <strong style="margin-right:10px;">COLOUR:</strong>
-               
-              </div>
-            </td>
-          </tr>
+          {% for colour_data in data["strike_off_lab_dip"]["Colours"]  %}
+            <tr>
+              <td>
+                <div class="box-design" style="margin-top: 15px;">
+                  <strong style="margin-right:10px;">COLOUR:</strong> {{colour_data["Colour"]}}
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
