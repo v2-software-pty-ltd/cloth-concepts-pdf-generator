@@ -30,10 +30,11 @@
     .inv-title h1 {
       text-align: center;
       font-weight: 100;
-      font-size: 40px;
+      font-size: 35px;
       font-family: monospace;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       margin-top: 5px;
+	  margin: 0 auto;
     }
 
     h3 {
@@ -79,14 +80,14 @@
         <h1 class="heading-title" style="text-decoration: underline;">Agency Commission Details</h1>
       </div>
       <div class="inv-body" style="width:100%; margin:0 auto; margin-top:50px;">
-        <h2 style="text-align:center; font-style:italic;">Commission Details for Vendor {{data["supplier"]["Vendor_Name"]}}</h2>
+        <h2 style="text-align:center; font-style:italic; font-size:28px;">Commission Details for Vendor {{data["supplier"]["Vendor_Name"]}}</h2>
         <table class="main-table" width="100%" cellpadding="10" cellspacing="0" style="text-align:left; margin: 0 auto; border-collapse: collapse; ">
           <tbody>
             <tr>
-              <th>Purchase Order Number</th>
-              <th>Currency</th>
-              <th>PO Amount</th>
-              <th>Commission Due</th>
+              <th width="30%">Purchase Order Number</th>
+              <th width="20%">Currency</th>
+              <th width="25%">PO Amount</th>
+              <th width="25%">Commission Due</th>
             </tr>
             {% for purchase_order in data["purchase_orders_for_supplier"] %}
             <tr>
