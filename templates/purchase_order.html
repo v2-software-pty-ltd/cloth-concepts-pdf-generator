@@ -321,21 +321,21 @@
               <td>
                 <b>Sub Total</b>
               </td>
-              <td>${{data["purchase_order_details"]["Grand_Total_ex_GST"]}}</td>
+              <td>{{data["purchase_order_details"]["Grand_Total_ex_GST"]}} {{data["purchase_order_details"]["Currency"]}}</td>
             </tr>
             <tr>
               <td style="border: none; background: initial;"></td>
               <td>
                 <b>GST</b>
               </td>
-              <td>${{data["purchase_order_details"]["GST"]}}</td>
+              <td>{{data["purchase_order_details"]["GST"]}} {{data["purchase_order_details"]["Currency"]}}</td>
             </tr>
             <tr>
               <td style="border: none; background: initial;"></td>
               <td>
                 <b>Total</b>
               </td>
-              <td>${{data["purchase_order_details"]["Grand_Total_inc_GST"]}}</td>
+              <td>{{data["purchase_order_details"]["Grand_Total_inc_GST"]}} {{data["purchase_order_details"]["Currency"]}}</td>
             </tr>
           </table>
         </tfoot>
