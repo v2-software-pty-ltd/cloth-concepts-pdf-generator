@@ -222,20 +222,32 @@ def purchase_order_html():
     shipping_sample_shipment_date = "N/A"
     if shipping_sample_shipment != None and "Ex_mill_date" in shipping_sample_shipment:
         shipping_sample_shipment_date = shipping_sample_shipment["Ex_mill_date"]
-    elif "Shipping_Sample_ETA" in purchase_order_details:
-        shipping_sample_shipment_date = purchase_order_details["Shipping_Sample_ETA"]
+    elif "Shipping_Sample_Date" in purchase_order_details:
+        shipping_sample_shipment_date = purchase_order_details["Shipping_Sample_Date"]
+
+    shipping_sample_notes = ""
+    if "Shipping_Sample_Notes" in purchase_order_details:
+        shipping_sample_notes = purchase_order_details["Shipping_Sample_Notes"]
 
     sample_shipment_date = "N/A"
     if sample_shipment != None and "Ex_mill_date" in sample_shipment:
         sample_shipment_date = sample_shipment["Ex_mill_date"]
-    elif "Sampling_ETA" in purchase_order_details:
-        sample_shipment_date = purchase_order_details["Sampling_ETA"]
+    elif "Sampling_ETA_Date" in purchase_order_details:
+        sample_shipment_date = purchase_order_details["Sampling_ETA_Date"]
+
+    sample_notes = ""
+    if "Sampling_Notes" in purchase_order_details:
+        sample_notes = purchase_order_details["Sampling_Notes"]
 
     bulk_shipment_date = "N/A"
     if bulk_shipment != None and "Ex_mill_date" in bulk_shipment:
         bulk_shipment_date = bulk_shipment["Ex_mill_date"]
     elif "Bulk_Delivery_Date" in purchase_order_details:
         bulk_shipment_date = purchase_order_details["Bulk_Delivery_Date"]
+
+    bulk_shipment_notes = ""
+    if "Bulk_Delivery_Notes" in purchase_order_details:
+        bulk_shipment_notes = purchase_order_details["Bulk_Delivery_Notes"]
 
     data = {
         "client_contact_name": client_contact_name,
@@ -252,7 +264,10 @@ def purchase_order_html():
         "purchase_order_details": purchase_order_details,
         "strike_off": strike_off,
         "lab_dip": lab_dip,
-        "has_surcharges": has_surcharges
+        "has_surcharges": has_surcharges,
+        "sample_notes": sample_notes,
+        "shipping_sample_notes": shipping_sample_notes,
+        "bulk_shipment_notes": bulk_shipment_notes
     }
 
 

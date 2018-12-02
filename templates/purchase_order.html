@@ -292,7 +292,7 @@
             {% if data["has_surcharges"] %}
             <td>{{line_item["Supplier_Surcharge"] or '0.0'}} {{data["purchase_order_details"]["Currency"]}}</td>
             {% endif %}
-            <td>{{line_item["Line_Item_Total"] or '0.0'}} {{data["purchase_order_details"]["Currency"]}}</td>
+            <td>{{"{:,}".format(line_item["Line_Item_Total"] or 0)}} {{data["purchase_order_details"]["Currency"]}}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -321,21 +321,21 @@
               <td>
                 <b>Sub Total</b>
               </td>
-              <td>{{data["purchase_order_details"]["Grand_Total_ex_GST"]}} {{data["purchase_order_details"]["Currency"]}}</td>
+              <td>${{"{:,}".format(data["purchase_order_details"]["Grand_Total_ex_GST"])}} {{data["purchase_order_details"]["Currency"]}}</td>
             </tr>
             <tr>
               <td style="border: none; background: initial;"></td>
               <td>
                 <b>GST</b>
               </td>
-              <td>{{data["purchase_order_details"]["GST"]}} {{data["purchase_order_details"]["Currency"]}}</td>
+              <td>${{"{:,}".format(data["purchase_order_details"]["GST"])}} {{data["purchase_order_details"]["Currency"]}}</td>
             </tr>
             <tr>
               <td style="border: none; background: initial;"></td>
               <td>
                 <b>Total</b>
               </td>
-              <td>{{data["purchase_order_details"]["Grand_Total_inc_GST"]}} {{data["purchase_order_details"]["Currency"]}}</td>
+              <td>${{"{:,}".format(data["purchase_order_details"]["Grand_Total_inc_GST"])}} {{data["purchase_order_details"]["Currency"]}}</td>
             </tr>
           </table>
         </tfoot>
@@ -373,13 +373,13 @@
               <p>Lab Dip: {{data["lab_dip"]["Received_Date"] if data["lab_dip"] != None else "N/A"}}</p>
               {% endif %}
               {% if data["shipping_sample_shipment_date"] != None %}
-              <p>Shipping Sample: {{data["shipping_sample_shipment_date"]}} (EX-MILL)</p>
+              <p>Shipping Sample: {{data["shipping_sample_shipment_date"]}} {{data["shipping_sample_notes"]}} (EX-MILL)</p>
               {% endif %}
               {% if data["sample_shipment_date"] != None %}
-              <p>Sampling: {{data["sample_shipment_date"]}} (EX-MILL)</p>
+              <p>Sampling: {{data["sample_shipment_date"]}} {{data["sample_notes"]}} (EX-MILL)</p>
               {% endif %}
               {% if data["bulk_shipment_date"] != None %}
-              <p>Bulk: {{data["bulk_shipment_date"]}} (EX-MILL)</p>
+              <p>Bulk: {{data["bulk_shipment_date"]}} {{data["bulk_shipment_notes"]}} (EX-MILL)</p>
               {% endif %}
             </td>
           </tr>

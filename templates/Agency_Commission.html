@@ -107,8 +107,8 @@
             <tr>
               <td>{{purchase_order["PO_Number"]}}</td>
               <td>{{purchase_order["Currency"]}}</td>
-              <td>{{purchase_order["Grand_Total_inc_GST"]}} {{purchase_order["Currency"]}}</td>
-              <td>{{purchase_order["Commission_Due"]}} {{purchase_order["Currency"]}}</td>
+              <td>{{"{:,}".format(purchase_order["Grand_Total_inc_GST"])}} {{purchase_order["Currency"]}}</td>
+              <td>{{"{:,}".format(purchase_order["Commission_Due"])}} {{purchase_order["Currency"]}}</td>
             </tr>
             {% endfor %}
 
@@ -121,10 +121,10 @@
                 <strong>{{currency}}</strong>
               </td>
               <td>
-                <strong>{{data["totals_data_per_currency"][currency]['order_total']}}</strong>
+                <strong>{{"{:,}".format(data["totals_data_per_currency"][currency]['order_total'])}}</strong>
               </td>
               <td>
-                <strong>{{data["totals_data_per_currency"][currency]['commission']}}</strong>
+                <strong>{{"{:,}".format(data["totals_data_per_currency"][currency]['commission'])}}</strong>
               </td>
             </tr>
             {% endfor %}
@@ -143,7 +143,7 @@
             {% for currency in data["totals_data_per_currency"].keys() %}
             <tr>
               <td>
-                {{currency}}: {{data["totals_data_per_currency"][currency]['commission']}}
+                {{currency}}: {{"{:,}".format(data["totals_data_per_currency"][currency]['commission'])}}
               </td>
             </tr>
             {% endfor %}
