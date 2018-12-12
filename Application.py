@@ -434,8 +434,10 @@ def sampling_order():
 @app.route('/agency-commission-html')
 def agency_commission_html():
     supplier_id = request.args.get('supplier_id')
+    start_date = request.args.get('start_date')
+    end_date = request.args.get('end_date')
 
-    argument_json = json.dumps({'supplier_id': supplier_id})
+    argument_json = json.dumps({'supplier_id': supplier_id, 'start_date': start_date, 'end_date': end_date})
     payload = {'arguments': argument_json}
 
     results = requests.post(
