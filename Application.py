@@ -438,7 +438,7 @@ def agency_commission_html():
     start_date = request.args.get('start_date')
     end_date = request.args.get('end_date')
 
-    argument_json = json.dumps({'supplier_id': supplier_id, 'start_date': start_date, 'end_date': end_date})
+    argument_json = json.dumps({'supplier_id': supplier_id, 'start_date_str': start_date, 'end_date_str': end_date})
     payload = {'arguments': argument_json}
 
     results = requests.post(
