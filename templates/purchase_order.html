@@ -228,6 +228,11 @@
         <h1 class="text-align-center all-caps margin(10px_0)">
           {% if data["supplier"]["Supplier_Type"] == "Agency Supplier" %}Agency {% endif %}Purchase Order #{{data["purchase_order_details"]["PO_Number"]}}
         </h1>
+        {% if data["purchase_order_details"]["Supplier_Invoice_number"] %}
+        <h3 class="text-align-center all-caps margin(10px_0)">
+          Supplier Invoice Number #{{data["purchase_order_details"]["Supplier_Invoice_number"]}}
+        </h3>
+        {% endif %}
       </div>
       <div class="customer-table">
         <table style="width: 100%;">

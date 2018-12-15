@@ -32,7 +32,7 @@
       font-weight: 100;
       font-size: 30px;
       font-family: monospace;
-      
+
       margin-top: 5px;
 	  margin: 0 auto;
     }
@@ -80,7 +80,7 @@
           class="inv-logo">
         <h1 class="heading-title" style="text-decoration: underline;">Agency Commission Details</h1>
       </div>
-	  
+
 	   <div class="inv-body" style="width:100%; margin-top:50px;">
         <table width="90%" cellpadding="4" align="left" style="text-align:left;">
           <tbody>
@@ -89,24 +89,25 @@
                 <h2 style="font-size:23px; font-style:italic; text-align:left; margin-left:20px;">Commission Details for Vendor {{data["supplier"]["Vendor_Name"]}}</h2>
               </td>
             </tr>
-            
           </tbody>
         </table>
       </div>
-	  
+
       <div class="inv-body" style="width:100%; margin:0 auto; margin-top:20px; text-align: center;">
-	 
+
         <table class="main-table" width="100%" cellpadding="10" cellspacing="0" style="text-align:left; margin: 0 auto; border-collapse: collapse; ">
           <tbody>
             <tr>
-              <th width="30%">Purchase Order Number</th>
-              <th width="20%">Currency</th>
-              <th width="25%">PO Amount</th>
+              <th width="20%">Purchase Order Number</th>
+              <th width="20%">Supplier Invoice Number</th>
+              <th width="15%">Currency</th>
+              <th width="20%">PO Amount</th>
               <th width="25%">Commission Due</th>
             </tr>
             {% for purchase_order in data["purchase_orders_for_supplier"] %}
             <tr>
               <td>{{purchase_order["PO_Number"]}}</td>
+              <td>{{purchase_order["Supplier_Invoice_number"]}}</td>
               <td>{{purchase_order["Currency"]}}</td>
               <td>{{"{:,}".format(purchase_order["Grand_Total_inc_GST"])}} {{purchase_order["Currency"]}}</td>
               <td>{{"{:,}".format(purchase_order["Commission_Due"])}} {{purchase_order["Currency"]}}</td>
