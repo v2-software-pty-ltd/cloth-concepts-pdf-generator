@@ -100,9 +100,9 @@
             <tr>
               <th width="20%">Purchase Order Number</th>
               <th width="20%">Supplier Invoice Number</th>
-              <th width="15%">Currency</th>
+              <th width="20%">Currency</th>
               <th width="20%">PO Amount</th>
-              <th width="25%">Commission Due</th>
+              <th width="20%">Commission Due</th>
             </tr>
             {% for purchase_order in data["purchase_orders_for_supplier"] %}
             <tr>
@@ -119,6 +119,7 @@
               <td>
                 <strong>TOTAL</strong>
               </td>
+              <td></td>
               <td>
                 <strong>{{currency}}</strong>
               </td>
