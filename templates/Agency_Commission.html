@@ -34,7 +34,7 @@
       font-family: monospace;
 
       margin-top: 5px;
-	  margin: 0 auto;
+	    margin: 0 auto;
     }
 
     h3 {
@@ -73,7 +73,7 @@
 </head>
 
 <body>
-  <div id="main-div" style="width:80%; margin:0 auto; padding-top:50px; padding-bottom:50px;">
+  <div id="main-div" style="width:90%; margin:0 auto; padding-top:50px; padding-bottom:50px;">
     <div class="div-wrapper" style="min-height:850px;">
       <div class="inv-title">
         <img src="https://static.wixstatic.com/media/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png/v1/crop/x_91,y_87,w_1409,h_515/fill/w_618,h_226,al_c,usm_0.66_1.00_0.01/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png"
@@ -99,10 +99,10 @@
           <tbody>
             <tr>
               <th width="20%">Purchase Order Number</th>
-              <th width="20%">Supplier Invoice Number</th>
+              <th width="15%">Supplier Invoice Number</th>
               <th width="20%">Currency</th>
               <th width="20%">PO Amount</th>
-              <th width="20%">Commission Due</th>
+              <th width="25%">Commission Due</th>
             </tr>
             {% for purchase_order in data["purchase_orders_for_supplier"] %}
             <tr>
