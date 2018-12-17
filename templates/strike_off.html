@@ -10,6 +10,10 @@
       size: letter;
     }
 
+    .heading-title {
+      text-align: left;
+    }
+
     body {
       font-family: monospace;
       margin: 0;
@@ -104,7 +108,7 @@
         <tbody>
           <tr>
             <td>
-              <strong style="margin-right:16px;" >FABRIC DETAILS:</strong> <span style="margin-left:15px">DIGITAL</span>
+              <strong style="margin-right:16px;" >FABRIC DETAILS:</strong> <span style="margin-left:15px">{{data["strike_off_lab_dip"]["Fabric_Details"]}}</span>
             </td>
           </tr>
           <tr>
@@ -124,7 +128,7 @@
           </tr>
           <tr>
             <td>
-             <strong style="margin-right:15px;">COMMENTS:</strong> <span style="margin-left:12px">PLEASE PRINT CLOTH CONCEPTS COPYRIGHT<br> ON SELVEDGE</span>
+             <strong style="margin-right:15px;">COMMENTS:</strong> <span style="margin-left:12px"> {{data["strike_off_lab_dip"]["Print_Copyright"]}}</span>
             </td>
           </tr>
           <tr>
