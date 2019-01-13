@@ -529,7 +529,6 @@ def pro_forma_purchase_order_html():
 
   sampling_order = output_dict["sampling_order"]
 
-  print(totals_data_per_currency)
   data = {
       "sampling_order": sampling_order,
       "supplier": output_dict["supplier"]
