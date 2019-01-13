@@ -572,6 +572,65 @@ def agency_commission():
     response.headers['Content-Disposition'] = "inline; filename=agency-commission-" + supplier_id + ".pdf"
     return response, 200
 
+@app.route('/pro-forma-purchase-order-html')
+def pro_forma_purchase_order_html():
+  sampling_order_id = request.args.get('sampling_order_id')
+
+  argument_json = json.dumps({'record_id': sampling_order_id})
+  payload = {'arguments': argument_json}
+
+  results = requests.post(
+      "https://crm.zoho.com/crm/v2/functions/data_for_sampling_order/actions/execute?auth_type=apikey&zapikey=1003.8f64ec64d9560c2c7e810f80fd21e49d.2add21fec0a719b739fa18725edab95b&arguments=" + argument_json,
+      data=payload)
+  result_dict = json.loads(results.text)
+
+  if ("details" not in result_dict):
+      print("Problem with request: " + results.text)
+
+  if ("output" not in result_dict["details"]):
+      print("Problem with request: " + results.text)
+  output_json = result_dict['details']['output']
+  output_dict = json.loads(output_json)
+
+  sampling_order = output_dict["sampling_order"]
+
+  print(totals_data_per_currency)
+  data = {
+      "sampling_order": sampling_order,
+      "supplier": output_dict["supplier"]
+  }
+  return render_template('./Pro_Forma_Purchase_Order.html', title='Sampling Order', data=data)
+
+@app.route('/pro-forma-purchase-order')
+def pro_forma_purchase_order():
+    html = pro_forma_purchase_order_html()
+    options = {
+        'page-size': 'A4',
+        'dpi': 240,
+        'margin-top': '0.15in',
+        'margin-right': '0.15in',
+        'margin-bottom': '0.15in',
+        'margin-left': '0.15in',
+        'encoding': "UTF-8",
+        'page-width': '20in',
+        'no-outline': None
+    }
+
+    if (platform.system() == 'Darwin'):
+        config = pdfkit.configuration()
+    else:
+        config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+    pdf = pdfkit.from_string(html, False, options=options, configuration=config)
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    sampling_order_id = request.args.get('sampling_order_id')
+
+    if sampling_order_id is None:
+        sampling_order_id = "--"
+    response.headers['Content-Disposition'] = "inline; filename=sample-order-" + sampling_order_id + ".pdf"
+    return response, 200
+
+
 port = int(os.getenv('PORT', 8084))
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
