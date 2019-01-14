@@ -533,6 +533,7 @@ def pro_forma_purchase_order_html():
       "sampling_order": sampling_order,
       "supplier": output_dict["supplier"]
   }
+
   return render_template('./Pro_Forma_Purchase_Order.html', title='Sampling Order', data=data)
 
 @app.route('/pro-forma-purchase-order')

@@ -36,6 +36,10 @@
       font-family: 'Fira Sans', sans-serif;
       letter-spacing: 2px;
       margin-top: 5px;
+      word-break: break-word;
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     h3 {
@@ -81,13 +85,13 @@
           <tr>
             <td>
               <span style="margin-right:10px;">SUPPLIER NAME:</span>
-              <span style="margin-left:15px">{{data["supplier"]["name"]}}</span>
+              <span style="margin-left:15px">{{(data["supplier"]["Vendor_Name"])}}</span>
             </td>
           </tr>
 		     <tr>
             <td>
               <span style="margin-right:10px;">SUPPLIER PRICE:</span>
-              <span style="margin-left:25px">{{data["sampling_order"]["Supplier_Price"]}}</span>
+              <span style="margin-left:25px">{{data["sampling_order"]["Supplier_Price"]}} {{data["sampling_order"]["Supplier_Currency"]}}</span>
             </td>
           </tr>
 		     <tr>
@@ -110,8 +114,8 @@
           </tr>
            <tr>
             <td>
-              <span style="margin-right:10px;">ADDITIONAL INFORMATION:</span>
-              <span style="margin-left:15px">{{data["sampling_order"]["Additional_Information"]}}</span>
+              <span style="margin-right:20px;">ADDITIONAL INFORMATION: </span>
+              <span style="margin-left:15px">{{data["sampling_order"]["Additional_Information"] or ""}}</span>
             </td>
           </tr>
         </tbody>
@@ -129,7 +133,6 @@
     </tr>
   </table>
 </div>
-
 
 </div>
 </body>
