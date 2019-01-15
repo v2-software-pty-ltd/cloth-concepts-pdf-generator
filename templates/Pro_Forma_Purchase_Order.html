@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="font/font.css">
   <title>Pro-Forma Purchase Order For Sampling</title>
   <style>
-    @page {
+     @page {
       size: letter;
     }
 
@@ -18,7 +18,7 @@
       font-family: 'Fira Sans', sans-serif;
       margin: 0;
       font-size: 15px;
-      letter-spacing: 1px;
+     
     }
 
     .inv-title {
@@ -34,12 +34,9 @@
       font-weight: 100;
       font-size: 25px;
       font-family: 'Fira Sans', sans-serif;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       margin-top: 5px;
-      word-break: break-word;
-      width: 300px;
-      margin-left: auto;
-      margin-right: auto;
+	      font-style: italic;
     }
 
     h3 {
@@ -75,56 +72,57 @@
      <div class="inv-title">
       <img src="https://static.wixstatic.com/media/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png/v1/crop/x_91,y_87,w_1409,h_515/fill/w_618,h_226,al_c,usm_0.66_1.00_0.01/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png"
         class="inv-logo">
-      <h1 class="heading-title" style="text-decoration: underline;">PRO-FORMA PURCHASE ORDER FOR SAMPLING
-</h1>
+      <h1 class="heading-title" >PRO-FORMA PURCHASE ORDER<br> FOR SAMPLING</h1>
     </div>
        <div class="inv-body" style="width:100%">
-      <table width="100%" cellpadding="4" style="text-align:center">
+      <table width="100%" cellpadding="4" >
         <tbody>
 
           <tr>
             <td>
-              <span style="margin-right:10px;">SUPPLIER NAME:</span>
-              <span style="margin-left:15px">{{(data["supplier"]["Vendor_Name"])}}</span>
+              <span style="margin-right:2px;">SUPPLIER NAME:</span>
+              <span style="margin-left:5px">{{(data["supplier"]["Vendor_Name"])}}</span>
             </td>
           </tr>
 		     <tr>
             <td>
-              <span style="margin-right:10px;">SUPPLIER PRICE:</span>
-              <span style="margin-left:25px">{{data["sampling_order"]["Supplier_Price"]}} {{data["sampling_order"]["Supplier_Currency"]}}</span>
+              <span style="margin-right:2px;">SUPPLIER PRICE:</span>
+              <span style="margin-left:5px">{{data["sampling_order"]["Supplier_Price"]}} {{data["sampling_order"]["Supplier_Currency"]}}</span>
             </td>
           </tr>
 		     <tr>
             <td>
-              <span style="margin-right:10px;">MILL ITEM NO: </span>
-              <span style="margin-left:15px">{{data["sampling_order"]["Mill_Item_Number"]}}</span>
+              <span style="margin-right:2px;">MILL ITEM NO: </span>
+              <span style="margin-left:5px">{{data["sampling_order"]["Mill_Item_Number"]}}</span>
             </td>
           </tr>
 		     <tr>
             <td>
-              <span style="margin-right:10px;">COLOUR: </span>
-              <span style="margin-left:15px">{{data["sampling_order"]["Colour"]}}</span>
+              <span style="margin-right:2px;">COLOUR: </span>
+              <span style="margin-left:5px">{{data["sampling_order"]["Colour"]}}</span>
             </td>
           </tr>
 		      <tr>
             <td>
-              <span style="margin-right:10px;">METERS ORDERED: </span>
-              <span style="margin-left:15px">{{data["sampling_order"]["Meters_Ordered"]}}</span>
+              <span style="margin-right:2px;">METERS ORDERED: </span>
+              <span style="margin-left:5px">{{data["sampling_order"]["Meters_Ordered"]}}</span>
             </td>
           </tr>
            <tr>
             <td>
               <span style="margin-right:20px;">ADDITIONAL INFORMATION: </span>
-              <span style="margin-left:15px">{{data["sampling_order"]["Additional_Information"] or ""}}</span>
+              <span style="margin-left:5px">{{data["sampling_order"]["Additional_Information"] or ""}}</span>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+	
+	
   </div>
-</body>
-<div class="inv-footer" style="width:100%; padding-top:20px; padding-right:15px;">
-  <table class="footer-table" width="60%" style="color: #000; font-size: 15px; margin:0 auto; text-align:center; font-weight: bold;">
+    <div style="width:80%; margin:0 auto; padding-bottom:50px;">
+	<div class="inv-footer" style="width:325px; padding-top:20px; padding-right:15px; ">
+  <table class="footer-table" width="100%" style="color: #000; font-size: 15px;  text-align:left; font-weight: bold;">
     <tr>
       <td colspan="2">UNIT 4/538 Gardeners Road, Alexandria 2015</td>
     </tr>
@@ -133,8 +131,7 @@
     </tr>
   </table>
 </div>
-
-</div>
+  </div>
 </body>
 
 </html>
