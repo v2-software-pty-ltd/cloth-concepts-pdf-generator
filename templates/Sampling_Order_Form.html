@@ -133,13 +133,13 @@
           <tr>
             <td>
               <span style="margin-right:10px;">SUPPLIER NUMBER: </span>
-              <span style="margin-left:25px"> {{data["sampling_order"]["Supplier_Number"] or ""}}</span>
+              <span style="margin-left:25px"> {{data["supplier"]["Supplier_Number"] or ""}}</span>
             </td>
           </tr>
           <tr>
             <td>
               <span style="margin-right:10px;">SUPPLIER PRICE:</span>
-              <span style="margin-left:25px"> {{data["sampling_order"]["Supplier_Price"] or ""}} {{data["supplier"]["Supplier_Currency"] or ""}}</span>
+              <span style="margin-left:25px"> {{data["sampling_order"]["Supplier_Price"]}} {{data["supplier"]["Supplier_Currency"] or ""}}</span>
             </td>
           </tr>
           <tr>
