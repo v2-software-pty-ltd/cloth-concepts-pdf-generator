@@ -262,22 +262,22 @@
               {% endif %}
             </td>
           </tr>
-            {% if data["supplier"]["Supplier_Type"] == "Agency Supplier" %}
-            <tr>
-              <td colspan="1">
-                Client Name
-              </td>
-              <td colspan="1">
-                {{(data["purchase_order_details"]["Client"]["name"])}}
-              </td>
-              <td colspan="1">
-                Client PO #
-              </td>
-              <td colspan="1">
-                {{(data["purchase_order_details"]["Customer_PO_Number"])}}
-              </td>
-            </tr>
-            {% endif %}
+          {% endif %}
+          {% if data["supplier"]["Supplier_Type"] == "Agency Supplier" %}
+          <tr>
+            <td colspan="1">
+              Client Name
+            </td>
+            <td colspan="1">
+              {{(data["purchase_order_details"]["Client"]["name"])}}
+            </td>
+            <td colspan="1">
+              Client PO #
+            </td>
+            <td colspan="1">
+              {{(data["purchase_order_details"]["Customer_PO_Number"])}}
+            </td>
+          </tr>
           {% endif %}
         </table>
       </div>
