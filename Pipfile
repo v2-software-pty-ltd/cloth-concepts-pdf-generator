@@ -29,7 +29,7 @@ six = "==1.11.0"
 "urllib3" = "==1.26.12"
 webencodings = "==0.5.1"
 Werkzeug = "==2.2.2"
-pdfkit = "*"
+pdfkit = "0.6.1"
 "python-dateutil" = "==2.7.3"
 
 [dev-packages]
