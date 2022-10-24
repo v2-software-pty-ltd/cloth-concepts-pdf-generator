@@ -203,22 +203,26 @@
       margin: 10px 0;
     }
 
-    .customer-table td, .customer-table th {
+    .customer-table td,
+    .customer-table th {
       border: 1px solid #000;
     }
+
   </style>
   <main id="wrapper">
     <section id="header">
       <div class="inline-block">
-        <img style="height: 100px; width: auto;" src="https://static.wixstatic.com/media/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png/v1/crop/x_91,y_87,w_1409,h_515/fill/w_618,h_226,al_c,usm_0.66_1.00_0.01/0ff677_40d2d98bf11e4333a7082ab5af308d4f~mv2.png"
-        />
+        <img style="height: 100px; width: auto;"
+          src="https://v2-software-pty-ltd.github.io/cloth-concepts-pdf-generator/cloth-concepts-logo.jpeg" />
       </div>
       <div class="inline-block float-right">
+        <span class="address1">CC Textiles International Pty Ltd</span>
+        </br>
         <span class="address1">Mailing Address: PO Box 564, Panania NSW 2213</span>
         </br>
         <span class="address2">Delivery Address: Unit 1/1 Bridge Street, Padstow NSW 2211 Australia</span>
         </br>
-        <span class="phone">Phone: +61 2 9669 4615</span>
+        <span class="phone">Phone: +61401501370</span>
         </br>
         <span class="abn">ABN: 99136665462</span>
       </div>
@@ -226,7 +230,8 @@
     <section id="confirmation-details">
       <div class="info-heading">
         <h1 class="text-align-center all-caps margin(10px_0)">
-          {% if data["supplier"]["Supplier_Type"] == "Agency Supplier" %}Agency {% endif %}Purchase Order #{{data["purchase_order_details"]["PO_Number"]}}
+          {% if data["supplier"]["Supplier_Type"] == "Agency Supplier" %}Agency {% endif %}Purchase Order
+          #{{data["purchase_order_details"]["PO_Number"]}}
         </h1>
         {% if data["purchase_order_details"]["Supplier_Invoice_number"] %}
         <h3 class="text-align-center all-caps margin(10px_0)">
@@ -252,13 +257,13 @@
           <tr>
             <td colspan="4">
               {% if data["supplier"]["Contact_Name"] %}
-                Contact Name: {{(data["supplier"]["Contact_Name"])}} <br/>
+              Contact Name: {{(data["supplier"]["Contact_Name"])}} <br />
               {% endif %}
               {% if data["supplier"]["Phone"] %}
-                Phone: {{(data["supplier"]["Phone"])}} <br/>
+              Phone: {{(data["supplier"]["Phone"])}} <br />
               {% endif %}
               {% if data["supplier"]["Head_Office"] %}
-                Address: {{data["supplier"]["Head_Office"] or ""}}<br/>
+              Address: {{data["supplier"]["Head_Office"] or ""}}<br />
               {% endif %}
             </td>
           </tr>
@@ -300,12 +305,17 @@
           <tr>
             <td>{{line_item["Product"]["Product_Name"]}}</td>
             <td>
-              {{ (line_item["Product"]["Mill_Item_Number"] + "<br/>" if line_item["Product"]["Mill_Item_Number"] else "")|safe }}
-              {{ ("COMPOSITION: " + line_item["Product"]["Fabric_Composition"] + "<br/>" if line_item["Product"]["Fabric_Composition"] else "")|safe }}
-              {{ ("WIDTH: " + line_item["Product"]["Width"] + "<br/>" if line_item["Product"]["Width"] else "")|safe }}
-              {{ ("LENGTH: " + line_item["Product"]["Piece_Length"] + "<br/>" if line_item["Product"]["Piece_Length"] else "")|safe }}
-              {{ ("WEIGHT: " + line_item["Product"]["Weight"] + "<br/>" if line_item["Product"]["Weight"] else "")|safe }}
-              {{ (line_item["Product"]["Additional_Information"] if line_item["Product"]["Additional_Information"] else "")|safe }}
+              {{ (line_item["Product"]["Mill_Item_Number"] + "<br />" if line_item["Product"]["Mill_Item_Number"] else
+              "")|safe }}
+              {{ ("COMPOSITION: " + line_item["Product"]["Fabric_Composition"] + "<br />" if
+              line_item["Product"]["Fabric_Composition"] else "")|safe }}
+              {{ ("WIDTH: " + line_item["Product"]["Width"] + "<br />" if line_item["Product"]["Width"] else "")|safe }}
+              {{ ("LENGTH: " + line_item["Product"]["Piece_Length"] + "<br />" if line_item["Product"]["Piece_Length"]
+              else "")|safe }}
+              {{ ("WEIGHT: " + line_item["Product"]["Weight"] + "<br />" if line_item["Product"]["Weight"] else "")|safe
+              }}
+              {{ (line_item["Product"]["Additional_Information"] if line_item["Product"]["Additional_Information"] else
+              "")|safe }}
             </td>
             <td>{{line_item["Colour"] or line_item["Product"]["Colour"] or ''}}</td>
             <td>{{line_item["Quantity_m"] or '0'}}m</td>
@@ -318,20 +328,21 @@
           {% endfor %}
         </tbody>
         <tfoot>
-          {% if data["purchase_order_details"]["Special_Instructions"] or data["purchase_order_details"]["Shipping_Sample_Instructions"] %}
+          {% if data["purchase_order_details"]["Special_Instructions"] or
+          data["purchase_order_details"]["Shipping_Sample_Instructions"] %}
           <tr>
             <td colspan="7" style="text-align: left;">
               {% if data["purchase_order_details"]["Special_Instructions"] %}
-                <b>Special Instructions:</b>
-                <br/>
-                {{data["purchase_order_details"]["Special_Instructions"] or ""}}
-                <br/>
-                <br/>
+              <b>Special Instructions:</b>
+              <br />
+              {{data["purchase_order_details"]["Special_Instructions"] or ""}}
+              <br />
+              <br />
               {% endif %}
               {% if data["purchase_order_details"]["Shipping_Sample_Instructions"] %}
-                <b>Shipping Sample Instructions:</b>
-                <br/>
-                {{data["purchase_order_details"]["Shipping_Sample_Instructions"] or ""}}
+              <b>Shipping Sample Instructions:</b>
+              <br />
+              {{data["purchase_order_details"]["Shipping_Sample_Instructions"] or ""}}
               {% endif %}
             </td>
           </tr>
@@ -342,27 +353,30 @@
               <td>
                 <b>Sub Total</b>
               </td>
-              <td>{{"{:,}".format(data["purchase_order_details"]["Grand_Total_ex_GST"])}} {{data["purchase_order_details"]["Currency"]}}</td>
+              <td>{{"{:,}".format(data["purchase_order_details"]["Grand_Total_ex_GST"])}}
+                {{data["purchase_order_details"]["Currency"]}}</td>
             </tr>
             <tr>
               <td style="border: none; background: initial;"></td>
               <td>
                 <b>GST</b>
               </td>
-              <td>{{"{:,}".format(data["purchase_order_details"]["GST"])}} {{data["purchase_order_details"]["Currency"]}}</td>
+              <td>{{"{:,}".format(data["purchase_order_details"]["GST"])}}
+                {{data["purchase_order_details"]["Currency"]}}</td>
             </tr>
             <tr>
               <td style="border: none; background: initial;"></td>
               <td>
                 <b>Total</b>
               </td>
-              <td>{{"{:,}".format(data["purchase_order_details"]["Grand_Total_inc_GST"])}} {{data["purchase_order_details"]["Currency"]}}</td>
+              <td>{{"{:,}".format(data["purchase_order_details"]["Grand_Total_inc_GST"])}}
+                {{data["purchase_order_details"]["Currency"]}}</td>
             </tr>
           </table>
         </tfoot>
       </table>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <table class="table-with-border">
         <thead>
           <tr>
@@ -377,14 +391,22 @@
         <tbody>
           <tr>
             <td>
-               {{ (data["purchase_order_details"]["Street_Address_Line_1"] + "<br/>" if data["purchase_order_details"]["Street_Address_Line_1"] else "")|safe }}
-               {{ (data["purchase_order_details"]["Street_Address_Line_2"] + "<br/>" if data["purchase_order_details"]["Street_Address_Line_2"] else "")|safe }}
-               {{ (data["purchase_order_details"]["City"] + "<br/>" if data["purchase_order_details"]["City"] else "")|safe }}
-               {{ (data["purchase_order_details"]["State"] + "<br/>" if data["purchase_order_details"]["State"] else "")|safe }}
-               {{ (data["purchase_order_details"]["Postcode"] + "<br/>" if data["purchase_order_details"]["Postcode"] else "")|safe }}
-               {{ ("Delivery method: " + data["purchase_order_details"]["Delivery_Method"] + "<br/>" if data["purchase_order_details"]["Delivery_Method"] else "")|safe }}
-               {{ ("Delivery instructions: " + data["purchase_order_details"]["Delivery_Instructions"] + "<br/>" if data["purchase_order_details"]["Delivery_Instructions"] else "")|safe }}
-               {{ ("Shipping Sample: " + data["purchase_order_details"]["Shipping_Sample_m"] + "<br/>" if data["purchase_order_details"]["Shipping_Sample_m"] else "")|safe }}
+              {{ (data["purchase_order_details"]["Street_Address_Line_1"] + "<br />" if
+              data["purchase_order_details"]["Street_Address_Line_1"] else "")|safe }}
+              {{ (data["purchase_order_details"]["Street_Address_Line_2"] + "<br />" if
+              data["purchase_order_details"]["Street_Address_Line_2"] else "")|safe }}
+              {{ (data["purchase_order_details"]["City"] + "<br />" if data["purchase_order_details"]["City"] else
+              "")|safe }}
+              {{ (data["purchase_order_details"]["State"] + "<br />" if data["purchase_order_details"]["State"] else
+              "")|safe }}
+              {{ (data["purchase_order_details"]["Postcode"] + "<br />" if data["purchase_order_details"]["Postcode"]
+              else "")|safe }}
+              {{ ("Delivery method: " + data["purchase_order_details"]["Delivery_Method"] + "<br />" if
+              data["purchase_order_details"]["Delivery_Method"] else "")|safe }}
+              {{ ("Delivery instructions: " + data["purchase_order_details"]["Delivery_Instructions"] + "<br />" if
+              data["purchase_order_details"]["Delivery_Instructions"] else "")|safe }}
+              {{ ("Shipping Sample: " + data["purchase_order_details"]["Shipping_Sample_m"] + "<br />" if
+              data["purchase_order_details"]["Shipping_Sample_m"] else "")|safe }}
             </td>
             <td>
               {% if data["purchase_order_details"]["Strike_Off_ETA"] != None %}
@@ -394,7 +416,8 @@
               <p>Lab Dip: {{data["lab_dip"]["Received_Date"] if data["lab_dip"] != None else "N/A"}}</p>
               {% endif %}
               {% if data["shipping_sample_shipment_date"] != None %}
-              <p>Shipping Sample: {{data["shipping_sample_shipment_date"]}} {{data["shipping_sample_notes"]}} (EX-MILL)</p>
+              <p>Shipping Sample: {{data["shipping_sample_shipment_date"]}} {{data["shipping_sample_notes"]}} (EX-MILL)
+              </p>
               {% endif %}
               {% if data["sample_shipment_date"] != None %}
               <p>Sampling: {{data["sample_shipment_date"]}} {{data["sample_notes"]}} (EX-MILL)</p>
@@ -406,10 +429,10 @@
           </tr>
         </tbody>
       </table>
-      <br/>
+      <br />
       <div id="terms">
         {% for term in data["purchase_order_details"]["Terms_and_Conditions"].split("\n") %}
-          <p>{{term}}</p>
+        <p>{{term}}</p>
         {% endfor %}
       </div>
     </section>
